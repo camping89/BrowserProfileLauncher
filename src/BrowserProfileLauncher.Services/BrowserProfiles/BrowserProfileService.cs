@@ -4,6 +4,7 @@ using AutoMapper;
 using BrowserProfileLauncher.Application.Models;
 using BrowserProfileLauncher.Core.EntityFramework.DbContexts;
 using BrowserProfileLauncher.Core.EntityFramework.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,7 +49,8 @@ namespace BrowserProfileLauncher.Services.BrowserProfiles
                                       .GetPagedList(predicate: x => x.UserId == userId,
                                                          pageSize: pageSize,
                                                          pageIndex: pageIndex,
-                                                         orderBy: x => x.OrderBy(y => y.ProfileName));
+                                                         orderBy: x => x.OrderBy(y => y.ProfileName),
+                                                         include: x => x.Include(y => y.Group));
 
                 return _mapper.Map<IPagedList<BrowserProfile>, PagedList<BrowserProfileModel>>(pagedList);
 

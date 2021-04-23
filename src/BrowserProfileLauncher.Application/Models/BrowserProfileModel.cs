@@ -10,7 +10,7 @@ namespace BrowserProfileLauncher.Application.Models
         public string GroupName { get; set; }
         public string ProfileName { get; set; }
         public string ProxyIp { get; set; }
-        public int ProxyPort { get; set; }
+        public int? ProxyPort { get; set; }
         public string ProxyProtocol { get; set; }
         public string ProxyUsername { get; set; }
         public string ProxyPassword { get; set; }

@@ -27,7 +27,6 @@ namespace BrowserProfileLauncher.Winform
             if (!Global.CurrentUser.RoleNames.Contains(RoleNameConstants.AdminRole))
             {
                 mainTabControl.TabPages.Remove(userTabPage);
-                createProfilePanel.Visible = false;
                 btnCreateProfile.Visible = false;
             }
         }
@@ -35,8 +34,9 @@ namespace BrowserProfileLauncher.Winform
         private void LoadBrowserProfiles(int pageIndex = 0)
         {
             var browserProfiles = _browserProfileService.GetPagedList(Global.CurrentUser.Id, pageIndex: pageIndex);
+            browserProfileDataGridView.AutoGenerateColumns = false;
             browserProfileBindingSource.DataSource = browserProfiles.Items;
-            this.browserProfileDataGridView2.DataSource = this.browserProfileBindingSource;
+            browserProfileDataGridView.Columns[0].Visible = false;
         }
 
         private void Logout(object? sender, EventArgs eventArgs)
