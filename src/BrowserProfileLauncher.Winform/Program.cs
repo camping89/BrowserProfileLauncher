@@ -5,6 +5,7 @@ using BrowserProfileLauncher.Core.EntityFramework.DbContexts;
 using BrowserProfileLauncher.Core.EntityFramework.Entities.Identities;
 using BrowserProfileLauncher.Services.Accounts;
 using BrowserProfileLauncher.Services.BrowserProfiles;
+using BrowserProfileLauncher.Services.ProfileGroups;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,7 +47,7 @@ namespace BrowserProfileLauncher.Winform
                        {
                            services.AddDbContext<BrowserProfileLauncherIdentityDbContext>(options => options.UseSqlServer(context.Configuration.GetConnectionString("IdentityDb")));
                            services.AddDbContext<BrowserProfileLauncherDbContext>(options => options.UseSqlServer(context.Configuration.GetConnectionString("BrowserProfileLauncher")))
-                                   .AddUnitOfWork<BrowserProfileLauncherDbContext>();
+                                   .AddUnitOfWork<BrowserProfileLauncherDbContext, BrowserProfileLauncherIdentityDbContext>();
 
                            services.AddIdentity<User, Role>(options =>
                            {
@@ -65,6 +66,7 @@ namespace BrowserProfileLauncher.Winform
                            {
                                mc.AddProfile(new BrowserProfileMapperProfile());
                                mc.AddProfile(new UserMapperProfile());
+                               mc.AddProfile(new ProfileGroupMapperProfile());
                            });
 
                            var mapper = mapperConfig.CreateMapper();
@@ -74,6 +76,8 @@ namespace BrowserProfileLauncher.Winform
                            services.AddSingleton<LoginForm>()
                                    .AddScoped<IAccountService, AccountService>()
                                    .AddScoped<IBrowserProfileService, BrowserProfileService>()
+                                   .AddScoped<IProfileGroupService, ProfileGroupService>()
+                                   .AddSingleton<IServiceProvider>(services.BuildServiceProvider())
                                    .AddLogging(configure => configure.AddConsole());
                        });
 

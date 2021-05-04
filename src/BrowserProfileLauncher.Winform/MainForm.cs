@@ -2,6 +2,8 @@
 using BrowserProfileLauncher.Common.Constants;
 using BrowserProfileLauncher.Services.Accounts;
 using BrowserProfileLauncher.Services.BrowserProfiles;
+using BrowserProfileLauncher.Services.ProfileGroups;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,14 +14,28 @@ namespace BrowserProfileLauncher.Winform
     {
         private readonly IBrowserProfileService _browserProfileService;
         private readonly IAccountService _accountService;
-        public MainForm(IBrowserProfileService browserProfileService, IAccountService accountService)
+        private readonly IProfileGroupService _profileGroupService;
+        private readonly IServiceProvider _serviceProvider;
+        public MainForm(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            this.browserProfileDataGridView.DataSource = this.browserProfileBindingSource;
-            _browserProfileService = browserProfileService;
-            _accountService = accountService;
+            browserProfileDataGridView.DataSource = browserProfileBindingSource;
+            profileGroupDataGridView.DataSource = profileGroupBindingSource;
+            userDataGridView.DataSource = userBindingSource;
+            _browserProfileService = serviceProvider.GetRequiredService<IBrowserProfileService>();
+            _accountService = serviceProvider.GetRequiredService<IAccountService>();
+            _profileGroupService = serviceProvider.GetRequiredService<IProfileGroupService>();
+            _serviceProvider = serviceProvider;
+        }
+
+        #region general private class methods
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
             SetupComponentVisibilities();
             LoadBrowserProfiles();
+            LoadProfileGroups();
+            LoadUsers();
         }
 
         private void SetupComponentVisibilities()
@@ -30,26 +46,34 @@ namespace BrowserProfileLauncher.Winform
                 btnCreateProfile.Visible = false;
             }
         }
-
-        private void LoadBrowserProfiles(int pageIndex = 0)
+        private bool IsDeleteConfirmed()
         {
-            var browserProfiles = _browserProfileService.GetPagedList(Global.CurrentUser.Id, pageIndex: pageIndex);
-            browserProfileDataGridView.AutoGenerateColumns = false;
-            browserProfileBindingSource.DataSource = browserProfiles.Items;
-            browserProfileDataGridView.Columns[0].Visible = false;
+            return MessageBox.Show("Do you really want to delete the selected row", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes;
         }
 
         private void Logout(object? sender, EventArgs eventArgs)
         {
             Global.CurrentUser = null;
-            var loginForm = new LoginForm(_accountService, _browserProfileService);
+            var loginForm = new LoginForm(_serviceProvider);
             Hide();
             loginForm.Show();
         }
 
+        #endregion
+
+        #region Browser Profiles methods
+
+        private void LoadBrowserProfiles(int pageIndex = 0)
+        {
+            var pagedList = _browserProfileService.GetPagedList(Global.CurrentUser.Id, pageIndex: pageIndex);
+            browserProfileDataGridView.AutoGenerateColumns = false;
+            browserProfileBindingSource.DataSource = pagedList.Items;
+            browserProfileDataGridView.Columns[0].Visible = false;
+        }
+
         private async void browserProfileDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            if (IsDeleteProfileConfirmed())
+            if (IsDeleteConfirmed())
             {
                 var profile = (BrowserProfileModel)e.Row.DataBoundItem;
                 await DeleteBrowserProfile(profile);
@@ -58,11 +82,6 @@ namespace BrowserProfileLauncher.Winform
             {
                 e.Cancel = true;
             }
-        }
-
-        private bool IsDeleteProfileConfirmed()
-        {
-            return MessageBox.Show("Do you really want to delete the selected row", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes;
         }
 
         private async Task DeleteBrowserProfile(BrowserProfileModel profile)
@@ -108,7 +127,7 @@ namespace BrowserProfileLauncher.Winform
                 switch (column.Name)
                 {
                     case "DeleteProfile":
-                        if (IsDeleteProfileConfirmed())
+                        if (IsDeleteConfirmed())
                         {
                             await DeleteBrowserProfile(profile);
                             browserProfileDataGridView.Rows.RemoveAt(e.RowIndex);
@@ -146,26 +165,60 @@ namespace BrowserProfileLauncher.Winform
             newProfileForm.Dispose();
         }
 
-        private async void browserProfileDataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        #endregion
+
+        #region Profile Groups
+
+        private void LoadProfileGroups(int pageIndex = 0)
+        {
+            var pagedList = _profileGroupService.GetPagedList(pageIndex: pageIndex);
+            profileGroupDataGridView.AutoGenerateColumns = false;
+            profileGroupBindingSource.DataSource = pagedList.Items;
+            profileGroupDataGridView.Columns[0].Visible = false;
+        }
+
+        private async Task DeleteBrowserProfileGroup(ProfileGroupModel profile)
+        {
+            await _profileGroupService.Delete(profile.Id);
+        }
+
+        private async Task EditBrowserProfileGroup(DataGridViewRow selectedRow)
+        {
+            var group = (ProfileGroupModel)selectedRow.DataBoundItem;
+            var editForm = new ProfileGroupDetailsForm(group);
+
+            if (editForm.ShowDialog(this) == DialogResult.OK)
+            {
+                group.GroupName = editForm.txtGroupName.Text;
+
+                await _profileGroupService.Update(group);
+
+                selectedRow.Cells["ProfileGroupName"].Value = group.GroupName;
+
+            }
+            editForm.Dispose();
+        }
+
+        private async void profileGroupDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
-            var selectedRow = browserProfileDataGridView.Rows[e.RowIndex];
-            var profile = (BrowserProfileModel)selectedRow.DataBoundItem;
+            var selectedRow = profileGroupDataGridView.Rows[e.RowIndex];
+            var group = (ProfileGroupModel)selectedRow.DataBoundItem;
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn column && e.RowIndex >= 0)
             {
                 switch (column.Name)
                 {
-                    case "DeleteProfile":
-                        if (IsDeleteProfileConfirmed())
+                    case "DeleteProfileGroup":
+                        if (IsDeleteConfirmed())
                         {
-                            await DeleteBrowserProfile(profile);
-                            browserProfileDataGridView.Rows.RemoveAt(e.RowIndex);
+                            await DeleteBrowserProfileGroup(group);
+                            profileGroupDataGridView.Rows.RemoveAt(e.RowIndex);
                         }
                         break;
-                    case "EditProfile":
+                    case "EditProfileGroup":
                         {
-                            await EditBrowserProfile(selectedRow);
+                            await EditBrowserProfileGroup(selectedRow);
                         }
                         break;
                     default:
@@ -174,12 +227,115 @@ namespace BrowserProfileLauncher.Winform
             }
         }
 
-        private async void browserProfileDataGridView2_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        private async void btnCreateProfileGroup_Click(object sender, EventArgs e)
         {
-            if (IsDeleteProfileConfirmed())
+            var newProfileGroupForm = new ProfileGroupDetailsForm();
+            if (newProfileGroupForm.ShowDialog(this) == DialogResult.OK)
             {
-                var profile = (BrowserProfileModel)e.Row.DataBoundItem;
-                await DeleteBrowserProfile(profile);
+                var profile = new ProfileGroupModel
+                {
+                    GroupName = newProfileGroupForm.txtGroupName.Text,
+                };
+                await _profileGroupService.Create(profile);
+                LoadProfileGroups();
+            };
+            newProfileGroupForm.Dispose();
+        }
+
+        private async void profileGroupDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (IsDeleteConfirmed())
+            {
+                var group = (ProfileGroupModel)e.Row.DataBoundItem;
+                await DeleteBrowserProfileGroup(group);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+
+        #endregion
+
+        #region users
+
+        private void LoadUsers(int pageIndex = 0)
+        {
+            var pagedList = _accountService.GetPagedList(pageIndex: pageIndex);
+            userDataGridView.AutoGenerateColumns = false;
+            userBindingSource.DataSource = pagedList.Items;
+            userDataGridView.Columns[0].Visible = false;
+        }
+
+        private async Task DeleteUserAccount(UserModel user)
+        {
+            await _accountService.Delete(user.Id);
+        }
+        private async Task ChangeLoginPassword(UserModel user)
+        {
+            var editForm = new ChangeUserPasswordForm(_accountService, user.Id);
+
+            if (editForm.ShowDialog(this) == DialogResult.OK)
+            {
+                var newPassword = editForm.txtNewPassword.Text;
+                await _accountService.ChangePassword(user.Id, newPassword);
+            }
+            editForm.Dispose();
+        }
+
+        private async Task EditUserAccount(UserModel user)
+        {
+            var editForm = new UserDetailsForm(_accountService, user.Id);
+
+            if (editForm.ShowDialog(this) == DialogResult.OK)
+            {
+                await _accountService.Update(user);
+            }
+            editForm.Dispose();
+        }
+
+        #endregion
+
+        private async void userDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            var selectedRow = userDataGridView.Rows[e.RowIndex];
+            var user = (UserModel)selectedRow.DataBoundItem;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn column && e.RowIndex >= 0)
+            {
+                switch (column.Name)
+                {
+                    case "DeleteUser":
+                        if (IsDeleteConfirmed())
+                        {
+                            await DeleteUserAccount(user);
+                            userDataGridView.Rows.RemoveAt(e.RowIndex);
+                        }
+                        break;
+                    case "EditUser":
+                        {
+                            await EditUserAccount(user);
+                            break;
+                        }
+                    case "ChangeUserPassword":
+                        {
+                            await ChangeLoginPassword(user);
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private async void userDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (IsDeleteConfirmed())
+            {
+                var user = (UserModel)e.Row.DataBoundItem;
+                await DeleteUserAccount(user);
             }
             else
             {

@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace BrowserProfileLauncher.Winform
 {
-    public partial class UserDetailsForm : Form
+    public partial class ChangeUserPasswordForm : Form
     {
         private readonly IAccountService _accountService;
         private readonly Guid? _userId;
-        public UserDetailsForm(IAccountService accountService, Guid? userId = null)
+        public ChangeUserPasswordForm(IAccountService accountService, Guid? userId = null)
         {
             InitializeComponent();
             _accountService = accountService;

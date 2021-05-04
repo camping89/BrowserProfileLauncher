@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.browserProfileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.profileTabPage = new System.Windows.Forms.TabPage();
@@ -49,30 +51,56 @@
             this.DeleteProfile = new System.Windows.Forms.DataGridViewButtonColumn();
             this.PingProxy = new System.Windows.Forms.DataGridViewButtonColumn();
             this.userTabPage = new System.Windows.Forms.TabPage();
-            this.userPanel = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.userTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.userDataGridView = new System.Windows.Forms.DataGridView();
+            this.profileGroupTabPage = new System.Windows.Forms.TabPage();
+            this.profileGroupTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.profileGroupDataGridView = new System.Windows.Forms.DataGridView();
+            this.profileGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProfileGroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProfilesCounts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditProfileGroup = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeleteProfileGroup = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnCreateProfileGroup = new System.Windows.Forms.Button();
+            this.ProfieGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProfilesCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditGroup = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeleteGroup = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.profileGroupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.menuItemAccount = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemAccount_Logout = new System.Windows.Forms.ToolStripMenuItem();
             this.mainFormTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditUser = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeleteUser = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ChangeUserPassword = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileBindingSource)).BeginInit();
             this.mainTabControl.SuspendLayout();
             this.profileTabPage.SuspendLayout();
             this.profileTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileDataGridView)).BeginInit();
             this.userTabPage.SuspendLayout();
-            this.userPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.userTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
+            this.profileGroupTabPage.SuspendLayout();
+            this.profileGroupTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.profileGroupDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profileGroupBindingSource)).BeginInit();
             this.mainMenu.SuspendLayout();
             this.mainFormTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTabControl
             // 
             this.mainTabControl.Controls.Add(this.profileTabPage);
             this.mainTabControl.Controls.Add(this.userTabPage);
+            this.mainTabControl.Controls.Add(this.profileGroupTabPage);
             this.mainTabControl.Location = new System.Drawing.Point(3, 32);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
@@ -128,7 +156,7 @@
             this.browserProfileDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gold;
             dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
@@ -262,7 +290,7 @@
             // userTabPage
             // 
             this.userTabPage.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.userTabPage.Controls.Add(this.userPanel);
+            this.userTabPage.Controls.Add(this.userTableLayoutPanel);
             this.userTabPage.Location = new System.Drawing.Point(4, 24);
             this.userTabPage.Name = "userTabPage";
             this.userTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -271,35 +299,199 @@
             this.userTabPage.Text = "Users";
             this.userTabPage.UseVisualStyleBackColor = true;
             // 
-            // userPanel
+            // userTableLayoutPanel
             // 
-            this.userPanel.Controls.Add(this.dataGridView2);
-            this.userPanel.Controls.Add(this.dataGridView1);
-            this.userPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userPanel.Location = new System.Drawing.Point(3, 3);
-            this.userPanel.Name = "userPanel";
-            this.userPanel.Size = new System.Drawing.Size(1214, 321);
-            this.userPanel.TabIndex = 0;
+            this.userTableLayoutPanel.ColumnCount = 1;
+            this.userTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.userTableLayoutPanel.Controls.Add(this.userDataGridView, 0, 1);
+            this.userTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.userTableLayoutPanel.Name = "userTableLayoutPanel";
+            this.userTableLayoutPanel.RowCount = 3;
+            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.userTableLayoutPanel.Size = new System.Drawing.Size(1214, 321);
+            this.userTableLayoutPanel.TabIndex = 0;
             // 
-            // dataGridView2
+            // userDataGridView
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(1214, 321);
-            this.dataGridView2.TabIndex = 1;
+            this.userDataGridView.AllowUserToAddRows = false;
+            this.userDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.userDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.UserId,
+            this.Username,
+            this.EditUser,
+            this.DeleteUser,
+            this.ChangeUserPassword});
+            this.userDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userDataGridView.Location = new System.Drawing.Point(3, 35);
+            this.userDataGridView.Name = "userDataGridView";
+            this.userDataGridView.ReadOnly = true;
+            this.userDataGridView.RowTemplate.Height = 25;
+            this.userDataGridView.Size = new System.Drawing.Size(1208, 250);
+            this.userDataGridView.TabIndex = 0;
+            this.userDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDataGridView_CellContentClick);
+            this.userDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.userDataGridView_UserDeletingRow);
             // 
-            // dataGridView1
+            // profileGroupTabPage
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1214, 321);
-            this.dataGridView1.TabIndex = 0;
+            this.profileGroupTabPage.Controls.Add(this.profileGroupTableLayoutPanel);
+            this.profileGroupTabPage.Location = new System.Drawing.Point(4, 24);
+            this.profileGroupTabPage.Name = "profileGroupTabPage";
+            this.profileGroupTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.profileGroupTabPage.Size = new System.Drawing.Size(1220, 327);
+            this.profileGroupTabPage.TabIndex = 2;
+            this.profileGroupTabPage.Text = "Profile Groups";
+            this.profileGroupTabPage.UseVisualStyleBackColor = true;
+            // 
+            // profileGroupTableLayoutPanel
+            // 
+            this.profileGroupTableLayoutPanel.ColumnCount = 1;
+            this.profileGroupTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.profileGroupTableLayoutPanel.Controls.Add(this.profileGroupDataGridView, 0, 1);
+            this.profileGroupTableLayoutPanel.Controls.Add(this.btnCreateProfileGroup, 0, 0);
+            this.profileGroupTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.profileGroupTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.profileGroupTableLayoutPanel.Name = "profileGroupTableLayoutPanel";
+            this.profileGroupTableLayoutPanel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.profileGroupTableLayoutPanel.RowCount = 3;
+            this.profileGroupTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.profileGroupTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.profileGroupTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.profileGroupTableLayoutPanel.Size = new System.Drawing.Size(1214, 321);
+            this.profileGroupTableLayoutPanel.TabIndex = 0;
+            // 
+            // profileGroupDataGridView
+            // 
+            this.profileGroupDataGridView.AllowUserToAddRows = false;
+            this.profileGroupDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.profileGroupDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.profileGroupDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.profileGroupDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.profileGroupId,
+            this.ProfileGroupName,
+            this.ProfilesCounts,
+            this.EditProfileGroup,
+            this.DeleteProfileGroup});
+            this.profileGroupDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.profileGroupDataGridView.Location = new System.Drawing.Point(3, 50);
+            this.profileGroupDataGridView.Name = "profileGroupDataGridView";
+            this.profileGroupDataGridView.ReadOnly = true;
+            this.profileGroupDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.profileGroupDataGridView.RowTemplate.Height = 25;
+            this.profileGroupDataGridView.Size = new System.Drawing.Size(1208, 250);
+            this.profileGroupDataGridView.TabIndex = 0;
+            this.profileGroupDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.profileGroupDataGridView_CellContentClick);
+            this.profileGroupDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.profileGroupDataGridView_UserDeletingRow);
+            // 
+            // profileGroupId
+            // 
+            this.profileGroupId.DataPropertyName = "Id";
+            this.profileGroupId.HeaderText = "Id";
+            this.profileGroupId.Name = "profileGroupId";
+            this.profileGroupId.ReadOnly = true;
+            this.profileGroupId.Visible = false;
+            // 
+            // ProfileGroupName
+            // 
+            this.ProfileGroupName.DataPropertyName = "GroupName";
+            this.ProfileGroupName.HeaderText = "Group Name";
+            this.ProfileGroupName.Name = "ProfileGroupName";
+            this.ProfileGroupName.ReadOnly = true;
+            // 
+            // ProfilesCounts
+            // 
+            this.ProfilesCounts.DataPropertyName = "ProfilesCount";
+            this.ProfilesCounts.HeaderText = "Profiles Count";
+            this.ProfilesCounts.Name = "ProfilesCounts";
+            this.ProfilesCounts.ReadOnly = true;
+            // 
+            // EditProfileGroup
+            // 
+            this.EditProfileGroup.HeaderText = "";
+            this.EditProfileGroup.Name = "EditProfileGroup";
+            this.EditProfileGroup.ReadOnly = true;
+            this.EditProfileGroup.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.EditProfileGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.EditProfileGroup.Text = "Edit";
+            this.EditProfileGroup.UseColumnTextForButtonValue = true;
+            // 
+            // DeleteProfileGroup
+            // 
+            this.DeleteProfileGroup.HeaderText = "";
+            this.DeleteProfileGroup.Name = "DeleteProfileGroup";
+            this.DeleteProfileGroup.ReadOnly = true;
+            this.DeleteProfileGroup.Text = "Delete";
+            this.DeleteProfileGroup.UseColumnTextForButtonValue = true;
+            // 
+            // btnCreateProfileGroup
+            // 
+            this.btnCreateProfileGroup.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCreateProfileGroup.Location = new System.Drawing.Point(1086, 3);
+            this.btnCreateProfileGroup.Name = "btnCreateProfileGroup";
+            this.btnCreateProfileGroup.Padding = new System.Windows.Forms.Padding(5);
+            this.btnCreateProfileGroup.Size = new System.Drawing.Size(125, 41);
+            this.btnCreateProfileGroup.TabIndex = 1;
+            this.btnCreateProfileGroup.Text = "Create New";
+            this.btnCreateProfileGroup.UseVisualStyleBackColor = true;
+            this.btnCreateProfileGroup.Click += new System.EventHandler(this.btnCreateProfileGroup_Click);
+            // 
+            // ProfieGroupId
+            // 
+            this.ProfieGroupId.DataPropertyName = "Id";
+            this.ProfieGroupId.HeaderText = "Id";
+            this.ProfieGroupId.Name = "ProfieGroupId";
+            this.ProfieGroupId.ReadOnly = true;
+            this.ProfieGroupId.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "GroupName";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Group Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // ProfilesCount
+            // 
+            this.ProfilesCount.HeaderText = "Profiles Count";
+            this.ProfilesCount.Name = "ProfilesCount";
+            this.ProfilesCount.ReadOnly = true;
+            // 
+            // EditGroup
+            // 
+            this.EditGroup.HeaderText = "";
+            this.EditGroup.Name = "EditGroup";
+            this.EditGroup.ReadOnly = true;
+            this.EditGroup.Text = "Edit";
+            this.EditGroup.ToolTipText = "Edit Group";
+            this.EditGroup.UseColumnTextForButtonValue = true;
+            // 
+            // DeleteGroup
+            // 
+            this.DeleteGroup.HeaderText = "";
+            this.DeleteGroup.Name = "DeleteGroup";
+            this.DeleteGroup.ReadOnly = true;
+            this.DeleteGroup.Text = "Delete";
+            this.DeleteGroup.ToolTipText = "Delete Group";
             // 
             // mainMenu
             // 
@@ -349,6 +541,56 @@
             this.mainFormTableLayoutPanel.Size = new System.Drawing.Size(1234, 634);
             this.mainFormTableLayoutPanel.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // UserId
+            // 
+            this.UserId.DataPropertyName = "Id";
+            this.UserId.HeaderText = "Id";
+            this.UserId.Name = "UserId";
+            this.UserId.ReadOnly = true;
+            this.UserId.Visible = false;
+            // 
+            // Username
+            // 
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            // 
+            // EditUser
+            // 
+            this.EditUser.HeaderText = "";
+            this.EditUser.Name = "EditUser";
+            this.EditUser.ReadOnly = true;
+            this.EditUser.Text = "Edit User";
+            this.EditUser.ToolTipText = "Edit User";
+            this.EditUser.UseColumnTextForButtonValue = true;
+            // 
+            // DeleteUser
+            // 
+            this.DeleteUser.HeaderText = "";
+            this.DeleteUser.Name = "DeleteUser";
+            this.DeleteUser.ReadOnly = true;
+            this.DeleteUser.Text = "Delete";
+            this.DeleteUser.UseColumnTextForButtonValue = true;
+            // 
+            // ChangeUserPassword
+            // 
+            this.ChangeUserPassword.HeaderText = "";
+            this.ChangeUserPassword.Name = "ChangeUserPassword";
+            this.ChangeUserPassword.ReadOnly = true;
+            this.ChangeUserPassword.Text = "Change Password";
+            this.ChangeUserPassword.ToolTipText = "Change User Password";
+            this.ChangeUserPassword.UseColumnTextForButtonValue = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -359,19 +601,24 @@
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";
             this.Text = "Browser Profile Launcher";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileBindingSource)).EndInit();
             this.mainTabControl.ResumeLayout(false);
             this.profileTabPage.ResumeLayout(false);
             this.profileTableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileDataGridView)).EndInit();
             this.userTabPage.ResumeLayout(false);
-            this.userPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.userTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
+            this.profileGroupTabPage.ResumeLayout(false);
+            this.profileGroupTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.profileGroupDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profileGroupBindingSource)).EndInit();
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.mainFormTableLayoutPanel.ResumeLayout(false);
             this.mainFormTableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,13 +629,10 @@
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.TabPage profileTabPage;
         private System.Windows.Forms.TabPage userTabPage;
-        private System.Windows.Forms.Panel userPanel;
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem menuItemAccount;
         private System.Windows.Forms.ToolStripMenuItem menuItemAccount_Logout;
         private System.Windows.Forms.Button btnCreateProfile;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TableLayoutPanel profileTableLayoutPanel;
         private System.Windows.Forms.DataGridView browserProfileDataGridView;
         private System.Windows.Forms.TableLayoutPanel mainFormTableLayoutPanel;
@@ -403,5 +647,29 @@
         private System.Windows.Forms.DataGridViewButtonColumn EditProfile;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteProfile;
         private System.Windows.Forms.DataGridViewButtonColumn PingProxy;
+        private System.Windows.Forms.TableLayoutPanel userTableLayoutPanel;
+        private System.Windows.Forms.TabPage profileGroupTabPage;
+        private System.Windows.Forms.TableLayoutPanel profileGroupTableLayoutPanel;
+        private System.Windows.Forms.BindingSource profileGroupBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProfieGroupId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProfilesCount;
+        private System.Windows.Forms.DataGridViewButtonColumn EditGroup;
+        private System.Windows.Forms.DataGridViewButtonColumn DeleteGroup;
+        private System.Windows.Forms.DataGridView profileGroupDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn profileGroupId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProfileGroupName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProfilesCounts;
+        private System.Windows.Forms.DataGridViewButtonColumn EditProfileGroup;
+        private System.Windows.Forms.DataGridViewButtonColumn DeleteProfileGroup;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCreateProfileGroup;
+        private System.Windows.Forms.DataGridView userDataGridView;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+        private System.Windows.Forms.DataGridViewButtonColumn EditUser;
+        private System.Windows.Forms.DataGridViewButtonColumn DeleteUser;
+        private System.Windows.Forms.DataGridViewButtonColumn ChangeUserPassword;
     }
 }

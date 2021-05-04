@@ -29,7 +29,9 @@ namespace BrowserProfileLauncher.Winform
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.mainPanel = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtProxyUsername = new System.Windows.Forms.TextBox();
             this.txtProxyPort = new System.Windows.Forms.TextBox();
@@ -42,32 +44,50 @@ namespace BrowserProfileLauncher.Winform
             this.label1 = new System.Windows.Forms.Label();
             this.txtProfileName = new System.Windows.Forms.TextBox();
             this.lblProfileName = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // mainPanel
             // 
-            this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Controls.Add(this.txtPassword);
-            this.panel1.Controls.Add(this.txtProxyUsername);
-            this.panel1.Controls.Add(this.txtProxyPort);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtProxyIp);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.txtProxyProtocol);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.txtProfileName);
-            this.panel1.Controls.Add(this.lblProfileName);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
-            this.panel1.TabIndex = 0;
+            this.mainPanel.Controls.Add(this.btnCancel);
+            this.mainPanel.Controls.Add(this.btnSave);
+            this.mainPanel.Controls.Add(this.txtPassword);
+            this.mainPanel.Controls.Add(this.txtProxyUsername);
+            this.mainPanel.Controls.Add(this.txtProxyPort);
+            this.mainPanel.Controls.Add(this.label5);
+            this.mainPanel.Controls.Add(this.label4);
+            this.mainPanel.Controls.Add(this.label3);
+            this.mainPanel.Controls.Add(this.txtProxyIp);
+            this.mainPanel.Controls.Add(this.label2);
+            this.mainPanel.Controls.Add(this.txtProxyProtocol);
+            this.mainPanel.Controls.Add(this.label1);
+            this.mainPanel.Controls.Add(this.txtProfileName);
+            this.mainPanel.Controls.Add(this.lblProfileName);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(800, 450);
+            this.mainPanel.TabIndex = 0;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(650, 402);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(112, 36);
+            this.btnCancel.TabIndex = 13;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSave.Location = new System.Drawing.Point(505, 402);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(112, 36);
+            this.btnSave.TabIndex = 12;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // txtPassword
             // 
@@ -180,43 +200,23 @@ namespace BrowserProfileLauncher.Winform
             this.lblProfileName.TabIndex = 0;
             this.lblProfileName.Text = "Profile Name:";
             // 
-            // btnSave
-            // 
-            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSave.Location = new System.Drawing.Point(505, 402);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(112, 36);
-            this.btnSave.TabIndex = 12;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(650, 402);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(112, 36);
-            this.btnCancel.TabIndex = 13;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
             // BrowserProfileDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.mainPanel);
             this.Name = "BrowserProfileDetailsForm";
-            this.Text = "BrowserProfileDetailsForm";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Text = "Browser Profile Details";
+            this.mainPanel.ResumeLayout(false);
+            this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtProfileName;
         private System.Windows.Forms.Label lblProfileName;

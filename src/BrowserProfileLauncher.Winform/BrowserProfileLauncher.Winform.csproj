@@ -15,6 +15,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="ProfileGroupDetailsForm.cs">
+	    <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Update="ChangeUserPasswordForm.cs">
+	    <SubType>Form</SubType>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<EmbeddedResource Update="MainForm - Copy.resx">
 			<DependentUpon>MainForm.resx</DependentUpon>
 		</EmbeddedResource>

@@ -1,5 +1,6 @@
 ﻿using BrowserProfileLauncher.Services.Accounts;
-using BrowserProfileLauncher.Services.BrowserProfiles;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -8,12 +9,12 @@ namespace BrowserProfileLauncher.Winform
     public partial class LoginForm : Form
     {
         private readonly IAccountService _accountService;
-        private readonly IBrowserProfileService _browserProfileService;
-        public LoginForm(IAccountService accountService, IBrowserProfileService browserProfileService)
+        private readonly IServiceProvider _serviceProvider;
+        public LoginForm(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            _accountService = accountService;
-            _browserProfileService = browserProfileService;
+            _accountService = serviceProvider.GetRequiredService<IAccountService>(); ;
+            _serviceProvider = serviceProvider;
         }
 
         private async void btnLogin_Click(object sender, System.EventArgs e)
@@ -36,7 +37,7 @@ namespace BrowserProfileLauncher.Winform
             if (user != null)
             {
                 Global.CurrentUser = user;
-                var mainForm = new MainForm(_browserProfileService, _accountService);
+                var mainForm = new MainForm(_serviceProvider);
                 mainForm.Closed += (s, args) => Close();
                 lblError.Visible = false;
                 Hide();
