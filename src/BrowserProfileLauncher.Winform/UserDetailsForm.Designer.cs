@@ -34,7 +34,7 @@ namespace BrowserProfileLauncher.Winform
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.cbGroup = new System.Windows.Forms.ComboBox();
+            this.lbxProfileGroups = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +61,7 @@ namespace BrowserProfileLauncher.Winform
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(197, 150);
+            this.btnSave.Location = new System.Drawing.Point(197, 293);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(106, 39);
             this.btnSave.TabIndex = 3;
@@ -72,7 +72,7 @@ namespace BrowserProfileLauncher.Winform
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCancel.Location = new System.Drawing.Point(408, 150);
+            this.btnCancel.Location = new System.Drawing.Point(408, 293);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(106, 39);
             this.btnCancel.TabIndex = 4;
@@ -88,21 +88,23 @@ namespace BrowserProfileLauncher.Winform
             this.txtUsername.Size = new System.Drawing.Size(317, 29);
             this.txtUsername.TabIndex = 5;
             // 
-            // cbGroup
+            // lbxProfileGroups
             // 
-            this.cbGroup.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbGroup.FormattingEnabled = true;
-            this.cbGroup.Location = new System.Drawing.Point(197, 91);
-            this.cbGroup.Name = "cbGroup";
-            this.cbGroup.Size = new System.Drawing.Size(317, 29);
-            this.cbGroup.TabIndex = 7;
+            this.lbxProfileGroups.FormattingEnabled = true;
+            this.lbxProfileGroups.ItemHeight = 15;
+            this.lbxProfileGroups.Location = new System.Drawing.Point(197, 99);
+            this.lbxProfileGroups.Name = "lbxProfileGroups";
+            this.lbxProfileGroups.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lbxProfileGroups.Size = new System.Drawing.Size(317, 154);
+            this.lbxProfileGroups.Sorted = true;
+            this.lbxProfileGroups.TabIndex = 8;
             // 
             // UserDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 234);
-            this.Controls.Add(this.cbGroup);
+            this.ClientSize = new System.Drawing.Size(648, 350);
+            this.Controls.Add(this.lbxProfileGroups);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -123,6 +125,6 @@ namespace BrowserProfileLauncher.Winform
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.ComboBox cbGroup;
+        public System.Windows.Forms.ListBox lbxProfileGroups;
     }
 }

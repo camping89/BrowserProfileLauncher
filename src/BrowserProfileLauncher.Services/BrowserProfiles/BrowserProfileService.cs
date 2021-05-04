@@ -43,10 +43,10 @@ namespace BrowserProfileLauncher.Services.BrowserProfiles
             }
         }
 
-        public IPagedList<BrowserProfileModel> GetPagedList(Guid userId, int pageSize = 10, int pageIndex = 0)
+        public IPagedList<BrowserProfileModel> GetPagedList(UserModel user, int pageSize = 10, int pageIndex = 0)
         {
             var pagedList = _unitOfWork.GetRepository<BrowserProfile>()
-                                  .GetPagedList(predicate: x => x.UserId == userId,
+                                  .GetPagedList(predicate: x => x.UserId == user.Id || (x.GroupId != null && user.ProfileGroupIds.Contains(x.GroupId.Value)),
                                                      pageSize: pageSize,
                                                      pageIndex: pageIndex,
                                                      orderBy: x => x.OrderBy(y => y.ProfileName),

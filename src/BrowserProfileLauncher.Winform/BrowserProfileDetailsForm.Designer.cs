@@ -30,6 +30,8 @@ namespace BrowserProfileLauncher.Winform
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.cbProfileGroup = new System.Windows.Forms.ComboBox();
+            this.Group = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -49,6 +51,8 @@ namespace BrowserProfileLauncher.Winform
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.cbProfileGroup);
+            this.mainPanel.Controls.Add(this.Group);
             this.mainPanel.Controls.Add(this.btnCancel);
             this.mainPanel.Controls.Add(this.btnSave);
             this.mainPanel.Controls.Add(this.txtPassword);
@@ -66,13 +70,32 @@ namespace BrowserProfileLauncher.Winform
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(800, 450);
+            this.mainPanel.Size = new System.Drawing.Size(815, 528);
             this.mainPanel.TabIndex = 0;
+            // 
+            // cbProfileGroup
+            // 
+            this.cbProfileGroup.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbProfileGroup.FormattingEnabled = true;
+            this.cbProfileGroup.Location = new System.Drawing.Point(367, 400);
+            this.cbProfileGroup.Name = "cbProfileGroup";
+            this.cbProfileGroup.Size = new System.Drawing.Size(282, 29);
+            this.cbProfileGroup.TabIndex = 16;
+            // 
+            // Group
+            // 
+            this.Group.AutoSize = true;
+            this.Group.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Group.Location = new System.Drawing.Point(154, 398);
+            this.Group.Name = "Group";
+            this.Group.Size = new System.Drawing.Size(57, 21);
+            this.Group.TabIndex = 15;
+            this.Group.Text = "Group:";
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(650, 402);
+            this.btnCancel.Location = new System.Drawing.Point(537, 467);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 36);
             this.btnCancel.TabIndex = 13;
@@ -82,7 +105,7 @@ namespace BrowserProfileLauncher.Winform
             // btnSave
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSave.Location = new System.Drawing.Point(505, 402);
+            this.btnSave.Location = new System.Drawing.Point(367, 467);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(112, 36);
             this.btnSave.TabIndex = 12;
@@ -114,7 +137,7 @@ namespace BrowserProfileLauncher.Winform
             this.txtProxyPort.Name = "txtProxyPort";
             this.txtProxyPort.Size = new System.Drawing.Size(282, 29);
             this.txtProxyPort.TabIndex = 9;
-            this.txtProxyPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProxyPort_KeyPress);
+            this.txtProxyPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtProxyPort_KeyPress);
             // 
             // label5
             // 
@@ -204,10 +227,11 @@ namespace BrowserProfileLauncher.Winform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(815, 528);
             this.Controls.Add(this.mainPanel);
             this.Name = "BrowserProfileDetailsForm";
             this.Text = "Browser Profile Details";
+            this.Load += new System.EventHandler(this.BrowserProfileDetailsForm_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -231,5 +255,7 @@ namespace BrowserProfileLauncher.Winform
         public System.Windows.Forms.TextBox txtProxyProtocol;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label Group;
+        public System.Windows.Forms.ComboBox cbProfileGroup;
     }
 }

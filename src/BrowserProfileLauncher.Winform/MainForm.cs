@@ -5,6 +5,8 @@ using BrowserProfileLauncher.Services.BrowserProfiles;
 using BrowserProfileLauncher.Services.ProfileGroups;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -43,9 +45,13 @@ namespace BrowserProfileLauncher.Winform
             if (!Global.CurrentUser.RoleNames.Contains(RoleNameConstants.AdminRole))
             {
                 mainTabControl.TabPages.Remove(userTabPage);
+                mainTabControl.TabPages.Remove(profileGroupTabPage);
                 btnCreateProfile.Visible = false;
+                browserProfileDataGridView.Columns["EditProfile"].Visible = false;
+                browserProfileDataGridView.Columns["DeleteProfile"].Visible = false;
             }
         }
+
         private bool IsDeleteConfirmed()
         {
             return MessageBox.Show("Do you really want to delete the selected row", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes;
@@ -57,6 +63,7 @@ namespace BrowserProfileLauncher.Winform
             var loginForm = new LoginForm(_serviceProvider);
             Hide();
             loginForm.Show();
+            this.Dispose();
         }
 
         #endregion
@@ -65,13 +72,13 @@ namespace BrowserProfileLauncher.Winform
 
         private void LoadBrowserProfiles(int pageIndex = 0)
         {
-            var pagedList = _browserProfileService.GetPagedList(Global.CurrentUser.Id, pageIndex: pageIndex);
+            var pagedList = _browserProfileService.GetPagedList(Global.CurrentUser, pageIndex: pageIndex);
             browserProfileDataGridView.AutoGenerateColumns = false;
             browserProfileBindingSource.DataSource = pagedList.Items;
             browserProfileDataGridView.Columns[0].Visible = false;
         }
 
-        private async void browserProfileDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        private async void BrowserProfileDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             if (IsDeleteConfirmed())
             {
@@ -92,7 +99,7 @@ namespace BrowserProfileLauncher.Winform
         private async Task EditBrowserProfile(DataGridViewRow selectedRow)
         {
             var profile = (BrowserProfileModel)selectedRow.DataBoundItem;
-            var editForm = new BrowserProfileDetailsForm(profile);
+            var editForm = new BrowserProfileDetailsForm(_profileGroupService, profile);
 
             if (editForm.ShowDialog(this) == DialogResult.OK)
             {
@@ -102,6 +109,8 @@ namespace BrowserProfileLauncher.Winform
                 profile.ProxyUsername = editForm.txtProxyUsername.Text;
                 profile.ProxyPassword = editForm.txtPassword.Text;
                 profile.ProxyProtocol = editForm.txtProxyProtocol.Text;
+                var selectGroup = (ProfileGroupModel)editForm.cbProfileGroup.SelectedItem;
+                profile.GroupId = selectGroup?.Id;
 
                 await _browserProfileService.Update(Global.CurrentUser.Id, profile);
 
@@ -111,12 +120,13 @@ namespace BrowserProfileLauncher.Winform
                 selectedRow.Cells["ProxyUsername"].Value = profile.ProxyUsername;
                 selectedRow.Cells["ProxyPassword"].Value = profile.ProxyPassword;
                 selectedRow.Cells["ProxyProtocol"].Value = profile.ProxyProtocol;
+                selectedRow.Cells["GroupName"].Value = selectGroup?.GroupName;
 
             }
             editForm.Dispose();
         }
 
-        private async void browserProfileDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void BrowserProfileDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
             var selectedRow = browserProfileDataGridView.Rows[e.RowIndex];
@@ -144,9 +154,9 @@ namespace BrowserProfileLauncher.Winform
             }
         }
 
-        private async void btnCreateProfile_Click(object sender, EventArgs e)
+        private async void BtnCreateProfile_Click(object sender, EventArgs e)
         {
-            var newProfileForm = new BrowserProfileDetailsForm();
+            var newProfileForm = new BrowserProfileDetailsForm(_profileGroupService);
             if (newProfileForm.ShowDialog(this) == DialogResult.OK)
             {
                 var profile = new BrowserProfileModel
@@ -199,7 +209,7 @@ namespace BrowserProfileLauncher.Winform
             editForm.Dispose();
         }
 
-        private async void profileGroupDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void ProfileGroupDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
             var selectedRow = profileGroupDataGridView.Rows[e.RowIndex];
@@ -227,7 +237,7 @@ namespace BrowserProfileLauncher.Winform
             }
         }
 
-        private async void btnCreateProfileGroup_Click(object sender, EventArgs e)
+        private async void BtnCreateProfileGroup_Click(object sender, EventArgs e)
         {
             var newProfileGroupForm = new ProfileGroupDetailsForm();
             if (newProfileGroupForm.ShowDialog(this) == DialogResult.OK)
@@ -242,7 +252,7 @@ namespace BrowserProfileLauncher.Winform
             newProfileGroupForm.Dispose();
         }
 
-        private async void profileGroupDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        private async void ProfileGroupDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             if (IsDeleteConfirmed())
             {
@@ -286,18 +296,18 @@ namespace BrowserProfileLauncher.Winform
 
         private async Task EditUserAccount(UserModel user)
         {
-            var editForm = new UserDetailsForm(_accountService, user.Id);
+            var editForm = new UserDetailsForm(_accountService, _profileGroupService, user.Id);
 
             if (editForm.ShowDialog(this) == DialogResult.OK)
             {
+                user.ProfileGroupIds = editForm.lbxProfileGroups.SelectedItems.Cast<ProfileGroupModel>()
+                                                                              .Select(pg => pg.Id).ToList();
                 await _accountService.Update(user);
             }
             editForm.Dispose();
         }
 
-        #endregion
-
-        private async void userDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void UserDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
             var selectedRow = userDataGridView.Rows[e.RowIndex];
@@ -330,7 +340,7 @@ namespace BrowserProfileLauncher.Winform
             }
         }
 
-        private async void userDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        private async void UserDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             if (IsDeleteConfirmed())
             {
@@ -342,5 +352,8 @@ namespace BrowserProfileLauncher.Winform
                 e.Cancel = true;
             }
         }
+
+        #endregion
+
     }
 }

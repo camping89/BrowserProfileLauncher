@@ -42,9 +42,9 @@ namespace BrowserProfileLauncher.Services.ProfileGroups
             }
         }
 
-        public List<ProfileGroupModel> GetAll()
+        public async Task<List<ProfileGroupModel>> GetAll()
         {
-            var groups = _unitOfWork.GetRepository<ProfileGroup>().GetAll().ToList();
+            var groups = await _unitOfWork.GetRepository<ProfileGroup>().GetAll().ToListAsync();
             return _mapper.Map<List<ProfileGroupModel>>(groups);
         }
 

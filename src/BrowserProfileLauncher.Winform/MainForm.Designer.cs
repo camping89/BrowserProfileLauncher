@@ -146,7 +146,7 @@
             this.btnCreateProfile.TabIndex = 0;
             this.btnCreateProfile.Text = "Create New";
             this.btnCreateProfile.UseVisualStyleBackColor = true;
-            this.btnCreateProfile.Click += new System.EventHandler(this.btnCreateProfile_Click);
+            this.btnCreateProfile.Click += new System.EventHandler(this.BtnCreateProfile_Click);
             // 
             // browserProfileDataGridView
             // 
@@ -195,8 +195,8 @@
             this.browserProfileDataGridView.RowTemplate.Height = 25;
             this.browserProfileDataGridView.Size = new System.Drawing.Size(1208, 474);
             this.browserProfileDataGridView.TabIndex = 0;
-            this.browserProfileDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.browserProfileDataGridView_CellContentClick);
-            this.browserProfileDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.browserProfileDataGridView_UserDeletingRow);
+            this.browserProfileDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrowserProfileDataGridView_CellContentClick);
+            this.browserProfileDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.BrowserProfileDataGridView_UserDeletingRow);
             // 
             // ProfileId
             // 
@@ -341,8 +341,8 @@
             this.userDataGridView.RowTemplate.Height = 25;
             this.userDataGridView.Size = new System.Drawing.Size(1208, 250);
             this.userDataGridView.TabIndex = 0;
-            this.userDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDataGridView_CellContentClick);
-            this.userDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.userDataGridView_UserDeletingRow);
+            this.userDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UserDataGridView_CellContentClick);
+            this.userDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.UserDataGridView_UserDeletingRow);
             // 
             // profileGroupTabPage
             // 
@@ -400,8 +400,8 @@
             this.profileGroupDataGridView.RowTemplate.Height = 25;
             this.profileGroupDataGridView.Size = new System.Drawing.Size(1208, 250);
             this.profileGroupDataGridView.TabIndex = 0;
-            this.profileGroupDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.profileGroupDataGridView_CellContentClick);
-            this.profileGroupDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.profileGroupDataGridView_UserDeletingRow);
+            this.profileGroupDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProfileGroupDataGridView_CellContentClick);
+            this.profileGroupDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.ProfileGroupDataGridView_UserDeletingRow);
             // 
             // profileGroupId
             // 
@@ -453,7 +453,7 @@
             this.btnCreateProfileGroup.TabIndex = 1;
             this.btnCreateProfileGroup.Text = "Create New";
             this.btnCreateProfileGroup.UseVisualStyleBackColor = true;
-            this.btnCreateProfileGroup.Click += new System.EventHandler(this.btnCreateProfileGroup_Click);
+            this.btnCreateProfileGroup.Click += new System.EventHandler(this.BtnCreateProfileGroup_Click);
             // 
             // ProfieGroupId
             // 
