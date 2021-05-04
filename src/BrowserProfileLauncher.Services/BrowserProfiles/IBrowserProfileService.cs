@@ -11,5 +11,7 @@ namespace BrowserProfileLauncher.Services.BrowserProfiles
         Task Create(BrowserProfileModel browserProfile);
         Task Update(Guid userId, BrowserProfileModel browserProfile);
         Task Delete(Guid userId, Guid profileId);
+        Task<bool> Ping(Guid profileId);
+        bool Ping(BrowserProfileModel profile);
     }
 }

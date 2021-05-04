@@ -96,6 +96,19 @@ namespace BrowserProfileLauncher.Winform
             await _browserProfileService.Delete(Global.CurrentUser.Id, profile.Id);
         }
 
+        private void PingProfileProxy(BrowserProfileModel profile)
+        {
+            var pingSuccess = _browserProfileService.Ping(profile);
+            if (pingSuccess)
+            {
+                MessageBox.Show("success");
+            }
+            else
+            {
+                MessageBox.Show("failed");
+            }
+        }
+
         private async Task EditBrowserProfile(DataGridViewRow selectedRow)
         {
             var profile = (BrowserProfileModel)selectedRow.DataBoundItem;
@@ -144,9 +157,11 @@ namespace BrowserProfileLauncher.Winform
                         }
                         break;
                     case "EditProfile":
-                        {
-                            await EditBrowserProfile(selectedRow);
-                        }
+                        await EditBrowserProfile(selectedRow);
+                        break;
+
+                    case "PingProxy":
+                        PingProfileProxy(profile);
                         break;
                     default:
                         break;
@@ -229,9 +244,7 @@ namespace BrowserProfileLauncher.Winform
                         }
                         break;
                     case "EditProfileGroup":
-                        {
-                            await EditBrowserProfileGroup(selectedRow);
-                        }
+                        await EditBrowserProfileGroup(selectedRow);
                         break;
                     default:
                         break;

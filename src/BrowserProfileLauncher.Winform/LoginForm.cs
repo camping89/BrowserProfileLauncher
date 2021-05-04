@@ -17,12 +17,12 @@ namespace BrowserProfileLauncher.Winform
             _serviceProvider = serviceProvider;
         }
 
-        private async void btnLogin_Click(object sender, System.EventArgs e)
+        private async void BtnLogin_Click(object sender, System.EventArgs e)
         {
             await Login();
         }
 
-        private async void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        private async void TxtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
