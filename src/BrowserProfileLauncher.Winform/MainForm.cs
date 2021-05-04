@@ -36,8 +36,8 @@ namespace BrowserProfileLauncher.Winform
         {
             SetupComponentVisibilities();
             LoadBrowserProfiles();
-            LoadProfileGroups();
-            LoadUsers();
+            //LoadProfileGroups();
+            //LoadUsers();
         }
 
         private void SetupComponentVisibilities()
@@ -159,6 +159,7 @@ namespace BrowserProfileLauncher.Winform
             var newProfileForm = new BrowserProfileDetailsForm(_profileGroupService);
             if (newProfileForm.ShowDialog(this) == DialogResult.OK)
             {
+                var selectGroup = (ProfileGroupModel)newProfileForm.cbProfileGroup.SelectedItem;
                 var profile = new BrowserProfileModel
                 {
                     ProfileName = newProfileForm.txtProfileName.Text,
@@ -167,6 +168,7 @@ namespace BrowserProfileLauncher.Winform
                     ProxyUsername = newProfileForm.txtProxyUsername.Text,
                     ProxyPassword = newProfileForm.txtPassword.Text,
                     ProxyProtocol = newProfileForm.txtProxyProtocol.Text,
+                    GroupId = selectGroup?.Id,
                     UserId = Global.CurrentUser.Id
                 };
                 await _browserProfileService.Create(profile);
@@ -353,7 +355,43 @@ namespace BrowserProfileLauncher.Winform
             }
         }
 
+        private async void BtnCreateUser_Click(object sender, EventArgs e)
+        {
+            var newUserForm = new CreateUserForm(_accountService, _profileGroupService);
+            if (newUserForm.ShowDialog(this) == DialogResult.OK)
+            {
+                var user = new UserModel
+                {
+                    Id = Guid.NewGuid(),
+                    Username = newUserForm.txtUsername.Text,
+                    Password = newUserForm.txtPassword.Text,
+                    ProfileGroupIds = newUserForm.lbxProfileGroups.SelectedItems.Cast<ProfileGroupModel>()
+                                                                              .Select(pg => pg.Id).ToList()
+                };
+                await _accountService.Create(user);
+                LoadUsers();
+            };
+            newUserForm.Dispose();
+        }
+
         #endregion
 
+        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (mainTabControl.SelectedIndex)
+            {
+                case 0:
+                    LoadBrowserProfiles();
+                    break;
+                case 1:
+                    LoadUsers();
+                    break;
+                case 2:
+                    LoadProfileGroups();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

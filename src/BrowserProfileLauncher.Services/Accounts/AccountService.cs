@@ -42,6 +42,11 @@ namespace BrowserProfileLauncher.Services.Accounts
         {
             var user = _mapper.Map<User>(model);
             await _userManager.CreateAsync(user, model.Password);
+            if (model.ProfileGroupIds.Any())
+            {
+                var newClaims = model.ProfileGroupIds.Select(profileGroupId => new Claim("ProfileGroup", profileGroupId.ToString()));
+                await _userManager.AddClaimsAsync(user, newClaims);
+            }
         }
 
         public async Task Delete(Guid userId)

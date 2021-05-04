@@ -21,6 +21,9 @@
 	  <Compile Update="ChangeUserPasswordForm.cs">
 	    <SubType>Form</SubType>
 	  </Compile>
+	  <Compile Update="CreateUserForm.cs">
+	    <SubType>Form</SubType>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>

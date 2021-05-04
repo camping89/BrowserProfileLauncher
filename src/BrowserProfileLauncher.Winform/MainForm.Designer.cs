@@ -53,6 +53,12 @@
             this.userTabPage = new System.Windows.Forms.TabPage();
             this.userTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.userDataGridView = new System.Windows.Forms.DataGridView();
+            this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditUser = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeleteUser = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ChangeUserPassword = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnCreateUser = new System.Windows.Forms.Button();
             this.profileGroupTabPage = new System.Windows.Forms.TabPage();
             this.profileGroupTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.profileGroupDataGridView = new System.Windows.Forms.DataGridView();
@@ -74,11 +80,6 @@
             this.mainFormTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EditUser = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DeleteUser = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ChangeUserPassword = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileBindingSource)).BeginInit();
             this.mainTabControl.SuspendLayout();
             this.profileTabPage.SuspendLayout();
@@ -106,6 +107,7 @@
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(1228, 355);
             this.mainTabControl.TabIndex = 0;
+            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
             // profileTabPage
             // 
@@ -138,8 +140,7 @@
             // btnCreateProfile
             // 
             this.btnCreateProfile.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCreateProfile.Location = new System.Drawing.Point(1086, 7);
-            this.btnCreateProfile.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.btnCreateProfile.Location = new System.Drawing.Point(1086, 3);
             this.btnCreateProfile.Name = "btnCreateProfile";
             this.btnCreateProfile.Padding = new System.Windows.Forms.Padding(5);
             this.btnCreateProfile.Size = new System.Drawing.Size(125, 41);
@@ -177,7 +178,7 @@
             this.DeleteProfile,
             this.PingProxy});
             this.browserProfileDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
-            this.browserProfileDataGridView.Location = new System.Drawing.Point(3, 54);
+            this.browserProfileDataGridView.Location = new System.Drawing.Point(3, 50);
             this.browserProfileDataGridView.MultiSelect = false;
             this.browserProfileDataGridView.Name = "browserProfileDataGridView";
             this.browserProfileDataGridView.ReadOnly = true;
@@ -217,7 +218,7 @@
             // ProfileName
             // 
             this.ProfileName.DataPropertyName = "ProfileName";
-            this.ProfileName.HeaderText = "Name";
+            this.ProfileName.HeaderText = "Profile Name";
             this.ProfileName.Name = "ProfileName";
             this.ProfileName.ReadOnly = true;
             // 
@@ -304,13 +305,15 @@
             this.userTableLayoutPanel.ColumnCount = 1;
             this.userTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.userTableLayoutPanel.Controls.Add(this.userDataGridView, 0, 1);
+            this.userTableLayoutPanel.Controls.Add(this.btnCreateUser, 0, 0);
             this.userTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.userTableLayoutPanel.Name = "userTableLayoutPanel";
+            this.userTableLayoutPanel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.userTableLayoutPanel.RowCount = 3;
-            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.userTableLayoutPanel.Size = new System.Drawing.Size(1214, 321);
             this.userTableLayoutPanel.TabIndex = 0;
             // 
@@ -335,14 +338,68 @@
             this.DeleteUser,
             this.ChangeUserPassword});
             this.userDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userDataGridView.Location = new System.Drawing.Point(3, 35);
+            this.userDataGridView.Location = new System.Drawing.Point(3, 50);
             this.userDataGridView.Name = "userDataGridView";
             this.userDataGridView.ReadOnly = true;
+            this.userDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.userDataGridView.RowTemplate.Height = 25;
             this.userDataGridView.Size = new System.Drawing.Size(1208, 250);
             this.userDataGridView.TabIndex = 0;
             this.userDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UserDataGridView_CellContentClick);
             this.userDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.UserDataGridView_UserDeletingRow);
+            // 
+            // UserId
+            // 
+            this.UserId.DataPropertyName = "Id";
+            this.UserId.HeaderText = "Id";
+            this.UserId.Name = "UserId";
+            this.UserId.ReadOnly = true;
+            this.UserId.Visible = false;
+            // 
+            // Username
+            // 
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            // 
+            // EditUser
+            // 
+            this.EditUser.HeaderText = "";
+            this.EditUser.Name = "EditUser";
+            this.EditUser.ReadOnly = true;
+            this.EditUser.Text = "Edit User";
+            this.EditUser.ToolTipText = "Edit User";
+            this.EditUser.UseColumnTextForButtonValue = true;
+            // 
+            // DeleteUser
+            // 
+            this.DeleteUser.HeaderText = "";
+            this.DeleteUser.Name = "DeleteUser";
+            this.DeleteUser.ReadOnly = true;
+            this.DeleteUser.Text = "Delete";
+            this.DeleteUser.UseColumnTextForButtonValue = true;
+            // 
+            // ChangeUserPassword
+            // 
+            this.ChangeUserPassword.HeaderText = "";
+            this.ChangeUserPassword.Name = "ChangeUserPassword";
+            this.ChangeUserPassword.ReadOnly = true;
+            this.ChangeUserPassword.Text = "Change Password";
+            this.ChangeUserPassword.ToolTipText = "Change User Password";
+            this.ChangeUserPassword.UseColumnTextForButtonValue = true;
+            // 
+            // btnCreateUser
+            // 
+            this.btnCreateUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCreateUser.Location = new System.Drawing.Point(1086, 3);
+            this.btnCreateUser.Name = "btnCreateUser";
+            this.btnCreateUser.Padding = new System.Windows.Forms.Padding(3);
+            this.btnCreateUser.Size = new System.Drawing.Size(125, 41);
+            this.btnCreateUser.TabIndex = 1;
+            this.btnCreateUser.Text = "Create New";
+            this.btnCreateUser.UseVisualStyleBackColor = true;
+            this.btnCreateUser.Click += new System.EventHandler(this.BtnCreateUser_Click);
             // 
             // profileGroupTabPage
             // 
@@ -550,47 +607,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // UserId
-            // 
-            this.UserId.DataPropertyName = "Id";
-            this.UserId.HeaderText = "Id";
-            this.UserId.Name = "UserId";
-            this.UserId.ReadOnly = true;
-            this.UserId.Visible = false;
-            // 
-            // Username
-            // 
-            this.Username.DataPropertyName = "Username";
-            this.Username.HeaderText = "Username";
-            this.Username.Name = "Username";
-            this.Username.ReadOnly = true;
-            // 
-            // EditUser
-            // 
-            this.EditUser.HeaderText = "";
-            this.EditUser.Name = "EditUser";
-            this.EditUser.ReadOnly = true;
-            this.EditUser.Text = "Edit User";
-            this.EditUser.ToolTipText = "Edit User";
-            this.EditUser.UseColumnTextForButtonValue = true;
-            // 
-            // DeleteUser
-            // 
-            this.DeleteUser.HeaderText = "";
-            this.DeleteUser.Name = "DeleteUser";
-            this.DeleteUser.ReadOnly = true;
-            this.DeleteUser.Text = "Delete";
-            this.DeleteUser.UseColumnTextForButtonValue = true;
-            // 
-            // ChangeUserPassword
-            // 
-            this.ChangeUserPassword.HeaderText = "";
-            this.ChangeUserPassword.Name = "ChangeUserPassword";
-            this.ChangeUserPassword.ReadOnly = true;
-            this.ChangeUserPassword.Text = "Change Password";
-            this.ChangeUserPassword.ToolTipText = "Change User Password";
-            this.ChangeUserPassword.UseColumnTextForButtonValue = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -636,17 +652,6 @@
         private System.Windows.Forms.TableLayoutPanel profileTableLayoutPanel;
         private System.Windows.Forms.DataGridView browserProfileDataGridView;
         private System.Windows.Forms.TableLayoutPanel mainFormTableLayoutPanel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProfileId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProfileName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyProtocol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyIp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyPort;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyUsername;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyPassword;
-        private System.Windows.Forms.DataGridViewButtonColumn EditProfile;
-        private System.Windows.Forms.DataGridViewButtonColumn DeleteProfile;
-        private System.Windows.Forms.DataGridViewButtonColumn PingProxy;
         private System.Windows.Forms.TableLayoutPanel userTableLayoutPanel;
         private System.Windows.Forms.TabPage profileGroupTabPage;
         private System.Windows.Forms.TableLayoutPanel profileGroupTableLayoutPanel;
@@ -671,5 +676,17 @@
         private System.Windows.Forms.DataGridViewButtonColumn EditUser;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteUser;
         private System.Windows.Forms.DataGridViewButtonColumn ChangeUserPassword;
+        private System.Windows.Forms.Button btnCreateUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProfileId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProfileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyProtocol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyIp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyPort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyUsername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProxyPassword;
+        private System.Windows.Forms.DataGridViewButtonColumn EditProfile;
+        private System.Windows.Forms.DataGridViewButtonColumn DeleteProfile;
+        private System.Windows.Forms.DataGridViewButtonColumn PingProxy;
     }
 }

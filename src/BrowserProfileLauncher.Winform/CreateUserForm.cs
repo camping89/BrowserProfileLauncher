@@ -8,32 +8,18 @@ using System.Windows.Forms;
 
 namespace BrowserProfileLauncher.Winform
 {
-    public partial class UserDetailsForm : Form
+    public partial class CreateUserForm : Form
     {
         private readonly IAccountService _accountService;
         private readonly IProfileGroupService _profileGroupService;
-        private readonly Guid? _userId;
         private UserModel _user;
-        public UserDetailsForm(IAccountService accountService, IProfileGroupService profileGroupService, Guid? userId = null)
+        public CreateUserForm(IAccountService accountService, IProfileGroupService profileGroupService)
         {
             InitializeComponent();
             _accountService = accountService;
-            _userId = userId;
             _profileGroupService = profileGroupService;
         }
 
-        private async Task LoadUserDetails()
-        {
-            if (_userId.HasValue)
-            {
-                var user = await _accountService.GetById(_userId.GetValueOrDefault());
-                if (user != null)
-                {
-                    _user = user;
-                    txtUsername.Text = user.Username;
-                }
-            }
-        }
         private async Task LoadProfileGroups()
         {
             var groups = await _profileGroupService.GetAll();
@@ -41,15 +27,17 @@ namespace BrowserProfileLauncher.Winform
             lbxProfileGroups.DisplayMember = nameof(ProfileGroupModel.GroupName);
             lbxProfileGroups.ValueMember = nameof(ProfileGroupModel.Id);
             lbxProfileGroups.ClearSelected();
-            foreach (var item in groups.Where(x => _user.ProfileGroupIds.Contains(x.Id)))
+            if (_user != null)
             {
-                lbxProfileGroups.SelectedItems.Add(item);
+                foreach (var item in groups.Where(x => _user.ProfileGroupIds.Contains(x.Id)))
+                {
+                    lbxProfileGroups.SelectedItems.Add(item);
+                }
             }
         }
 
         private async void UserDetailsForm_Load(object sender, EventArgs e)
         {
-            await LoadUserDetails();
             await LoadProfileGroups();
         }
     }

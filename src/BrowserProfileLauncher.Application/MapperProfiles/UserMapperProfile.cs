@@ -13,7 +13,9 @@ namespace BrowserProfileLauncher.Application.MapperProfiles
 
             CreateMap<IPagedList<User>, PagedList<UserModel>>();
 
-            CreateMap<UserModel, User>();
+            CreateMap<UserModel, User>()
+                .ForMember(x => x.Email, opt => opt.MapFrom(src => $"{src.Id}@email.com"))
+                .ForMember(x => x.EmailConfirmed, opt => opt.MapFrom(src => true));
         }
     }
 }
