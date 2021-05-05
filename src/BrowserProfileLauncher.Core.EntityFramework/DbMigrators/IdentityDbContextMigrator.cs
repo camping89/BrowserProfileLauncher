@@ -45,7 +45,6 @@ namespace BrowserProfileLauncher.Core.EntityFramework.DbMigrators
                 await _roleManager.CreateAsync(role);
             }
 
-
             #region seed User data
 
             if (!await _dbContext.Users.AnyAsync())

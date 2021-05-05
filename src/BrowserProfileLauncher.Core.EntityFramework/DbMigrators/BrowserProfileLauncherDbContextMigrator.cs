@@ -27,8 +27,6 @@ namespace BrowserProfileLauncher.Core.EntityFramework.DbMigrators
             //create profile groups
             if (!_dbContext.ProfileGroups.Any())
             {
-
-
                 await _dbContext.ProfileGroups.AddAsync(new ProfileGroup
                 {
                     GroupName = "Group 1"
