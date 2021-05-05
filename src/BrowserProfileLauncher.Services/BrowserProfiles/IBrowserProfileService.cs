@@ -13,5 +13,6 @@ namespace BrowserProfileLauncher.Services.BrowserProfiles
         Task Delete(Guid userId, Guid profileId);
         Task<bool> Ping(Guid profileId);
         bool Ping(BrowserProfileModel profile);
+        void Launch(BrowserProfileModel profile, string customAgent = null);
     }
 }

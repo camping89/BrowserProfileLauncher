@@ -109,7 +109,7 @@ namespace BrowserProfileLauncher.Winform
             this.Controls.Add(this.lblNewPassword);
             this.Controls.Add(this.label1);
             this.Name = "ChangeUserPasswordForm";
-            this.Text = "User Details";
+            this.Text = "Change User Password";
             this.Load += new System.EventHandler(this.UserDetailsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

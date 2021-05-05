@@ -4,6 +4,7 @@ using AutoMapper;
 using BrowserProfileLauncher.Application.Models;
 using BrowserProfileLauncher.Core.EntityFramework.DbContexts;
 using BrowserProfileLauncher.Core.EntityFramework.Entities;
+using BrowserProfileLauncher.Core.ProxyServers;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using System;
@@ -18,13 +19,15 @@ namespace BrowserProfileLauncher.Services.BrowserProfiles
     {
         private readonly IUnitOfWork<BrowserProfileLauncherDbContext> _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ISeleniumProxyServer _seleniumProxyServer;
 
         private readonly BrowserProfileLauncherDbContext _context;
 
-        public BrowserProfileService(IUnitOfWork<BrowserProfileLauncherDbContext> unitOfWork, IMapper mapper)
+        public BrowserProfileService(IUnitOfWork<BrowserProfileLauncherDbContext> unitOfWork, IMapper mapper, ISeleniumProxyServer seleniumProxyServer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _seleniumProxyServer = seleniumProxyServer;
         }
 
         public async Task Create(BrowserProfileModel browserProfile)
@@ -108,6 +111,12 @@ namespace BrowserProfileLauncher.Services.BrowserProfiles
             }
             _unitOfWork.GetRepository<BrowserProfile>().Update(foundProfile);
             await _unitOfWork.SaveChangesAsync();
+        }
+
+        public void Launch(BrowserProfileModel profile, string customAgent = null)
+        {
+            var proxyAuth = new ProxyAuth(profile.ProxyIp, profile.ProxyPort.GetValueOrDefault(), profile.ProxyUsername, profile.ProxyPassword);
+            _seleniumProxyServer.LaunchBrowser(proxyAuth, customAgent);
         }
     }
 }

@@ -50,6 +50,7 @@
             this.EditProfile = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteProfile = new System.Windows.Forms.DataGridViewButtonColumn();
             this.PingProxy = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.LaunchBrowser = new System.Windows.Forms.DataGridViewButtonColumn();
             this.userTabPage = new System.Windows.Forms.TabPage();
             this.userTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.userDataGridView = new System.Windows.Forms.DataGridView();
@@ -152,7 +153,7 @@
             // browserProfileDataGridView
             // 
             this.browserProfileDataGridView.AllowUserToAddRows = false;
-            this.browserProfileDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.browserProfileDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.browserProfileDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -176,7 +177,8 @@
             this.ProxyPassword,
             this.EditProfile,
             this.DeleteProfile,
-            this.PingProxy});
+            this.PingProxy,
+            this.LaunchBrowser});
             this.browserProfileDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
             this.browserProfileDataGridView.Location = new System.Drawing.Point(3, 50);
             this.browserProfileDataGridView.MultiSelect = false;
@@ -287,6 +289,16 @@
             this.PingProxy.Text = "Ping";
             this.PingProxy.ToolTipText = "Ping profile proxy";
             this.PingProxy.UseColumnTextForButtonValue = true;
+            // 
+            // LaunchBrowser
+            // 
+            this.LaunchBrowser.HeaderText = "";
+            this.LaunchBrowser.Name = "LaunchBrowser";
+            this.LaunchBrowser.ReadOnly = true;
+            this.LaunchBrowser.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.LaunchBrowser.Text = "Launch Browser";
+            this.LaunchBrowser.ToolTipText = "Launch Browser With This Proxy Profile";
+            this.LaunchBrowser.UseColumnTextForButtonValue = true;
             // 
             // userTabPage
             // 
@@ -617,6 +629,7 @@
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";
             this.Text = "Browser Profile Launcher";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileBindingSource)).EndInit();
             this.mainTabControl.ResumeLayout(false);
@@ -677,6 +690,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn DeleteUser;
         private System.Windows.Forms.DataGridViewButtonColumn ChangeUserPassword;
         private System.Windows.Forms.Button btnCreateUser;
+        private System.Windows.Forms.DataGridViewButtonColumn PingProxy;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProfileId;
         private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProfileName;
@@ -687,6 +701,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProxyPassword;
         private System.Windows.Forms.DataGridViewButtonColumn EditProfile;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteProfile;
-        private System.Windows.Forms.DataGridViewButtonColumn PingProxy;
+        private System.Windows.Forms.DataGridViewButtonColumn LaunchBrowser;
     }
 }

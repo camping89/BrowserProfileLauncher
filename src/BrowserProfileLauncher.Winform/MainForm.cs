@@ -6,6 +6,7 @@ using BrowserProfileLauncher.Services.ProfileGroups;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,8 +37,6 @@ namespace BrowserProfileLauncher.Winform
         {
             SetupComponentVisibilities();
             LoadBrowserProfiles();
-            //LoadProfileGroups();
-            //LoadUsers();
         }
 
         private void SetupComponentVisibilities()
@@ -101,11 +100,22 @@ namespace BrowserProfileLauncher.Winform
             var pingSuccess = _browserProfileService.Ping(profile);
             if (pingSuccess)
             {
-                MessageBox.Show("success");
+                MessageBox.Show("Ping proxy successfully", "Ping result", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("failed");
+                MessageBox.Show("Ping proxy failed", "Ping result", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LaunchBrowserProfile(BrowserProfileModel profile)
+        {
+            var customAgentForm = new CustomUserAgentForm();
+            var dialogResult = customAgentForm.ShowDialog(this);
+            if (dialogResult != DialogResult.Cancel)
+            {
+                string customAgent = dialogResult == DialogResult.OK ? customAgentForm.txtUserAgent.Text : null;
+                _browserProfileService.Launch(profile, customAgent);
             }
         }
 
@@ -141,30 +151,36 @@ namespace BrowserProfileLauncher.Winform
 
         private async void BrowserProfileDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var senderGrid = (DataGridView)sender;
-            var selectedRow = browserProfileDataGridView.Rows[e.RowIndex];
-            var profile = (BrowserProfileModel)selectedRow.DataBoundItem;
-
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn column && e.RowIndex >= 0)
+            if (e.RowIndex > -1)
             {
-                switch (column.Name)
-                {
-                    case "DeleteProfile":
-                        if (IsDeleteConfirmed())
-                        {
-                            await DeleteBrowserProfile(profile);
-                            browserProfileDataGridView.Rows.RemoveAt(e.RowIndex);
-                        }
-                        break;
-                    case "EditProfile":
-                        await EditBrowserProfile(selectedRow);
-                        break;
+                var senderGrid = (DataGridView)sender;
+                var selectedRow = browserProfileDataGridView.Rows[e.RowIndex];
+                var profile = (BrowserProfileModel)selectedRow.DataBoundItem;
 
-                    case "PingProxy":
-                        PingProfileProxy(profile);
-                        break;
-                    default:
-                        break;
+                if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn column && e.RowIndex >= 0)
+                {
+                    switch (column.Name)
+                    {
+                        case "DeleteProfile":
+                            if (IsDeleteConfirmed())
+                            {
+                                await DeleteBrowserProfile(profile);
+                                browserProfileDataGridView.Rows.RemoveAt(e.RowIndex);
+                            }
+                            break;
+                        case "EditProfile":
+                            await EditBrowserProfile(selectedRow);
+                            break;
+
+                        case "PingProxy":
+                            PingProfileProxy(profile);
+                            break;
+                        case "LaunchBrowser":
+                            LaunchBrowserProfile(profile);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
@@ -228,26 +244,29 @@ namespace BrowserProfileLauncher.Winform
 
         private async void ProfileGroupDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var senderGrid = (DataGridView)sender;
-            var selectedRow = profileGroupDataGridView.Rows[e.RowIndex];
-            var group = (ProfileGroupModel)selectedRow.DataBoundItem;
-
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn column && e.RowIndex >= 0)
+            if (e.RowIndex > -1)
             {
-                switch (column.Name)
+                var senderGrid = (DataGridView)sender;
+                var selectedRow = profileGroupDataGridView.Rows[e.RowIndex];
+                var group = (ProfileGroupModel)selectedRow.DataBoundItem;
+
+                if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn column && e.RowIndex >= 0)
                 {
-                    case "DeleteProfileGroup":
-                        if (IsDeleteConfirmed())
-                        {
-                            await DeleteBrowserProfileGroup(group);
-                            profileGroupDataGridView.Rows.RemoveAt(e.RowIndex);
-                        }
-                        break;
-                    case "EditProfileGroup":
-                        await EditBrowserProfileGroup(selectedRow);
-                        break;
-                    default:
-                        break;
+                    switch (column.Name)
+                    {
+                        case "DeleteProfileGroup":
+                            if (IsDeleteConfirmed())
+                            {
+                                await DeleteBrowserProfileGroup(group);
+                                profileGroupDataGridView.Rows.RemoveAt(e.RowIndex);
+                            }
+                            break;
+                        case "EditProfileGroup":
+                            await EditBrowserProfileGroup(selectedRow);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
@@ -324,33 +343,36 @@ namespace BrowserProfileLauncher.Winform
 
         private async void UserDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var senderGrid = (DataGridView)sender;
-            var selectedRow = userDataGridView.Rows[e.RowIndex];
-            var user = (UserModel)selectedRow.DataBoundItem;
-
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn column && e.RowIndex >= 0)
+            if (e.RowIndex > -1)
             {
-                switch (column.Name)
+                var senderGrid = (DataGridView)sender;
+                var selectedRow = userDataGridView.Rows[e.RowIndex];
+                var user = (UserModel)selectedRow.DataBoundItem;
+
+                if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn column && e.RowIndex >= 0)
                 {
-                    case "DeleteUser":
-                        if (IsDeleteConfirmed())
-                        {
-                            await DeleteUserAccount(user);
-                            userDataGridView.Rows.RemoveAt(e.RowIndex);
-                        }
-                        break;
-                    case "EditUser":
-                        {
-                            await EditUserAccount(user);
+                    switch (column.Name)
+                    {
+                        case "DeleteUser":
+                            if (IsDeleteConfirmed())
+                            {
+                                await DeleteUserAccount(user);
+                                userDataGridView.Rows.RemoveAt(e.RowIndex);
+                            }
                             break;
-                        }
-                    case "ChangeUserPassword":
-                        {
-                            await ChangeLoginPassword(user);
+                        case "EditUser":
+                            {
+                                await EditUserAccount(user);
+                                break;
+                            }
+                        case "ChangeUserPassword":
+                            {
+                                await ChangeLoginPassword(user);
+                                break;
+                            }
+                        default:
                             break;
-                        }
-                    default:
-                        break;
+                    }
                 }
             }
         }
@@ -404,6 +426,17 @@ namespace BrowserProfileLauncher.Winform
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var workers = Process.GetProcessesByName("chromedriver");
+            foreach (Process worker in workers)
+            {
+                worker.Kill();
+                worker.WaitForExit();
+                worker.Dispose();
             }
         }
     }

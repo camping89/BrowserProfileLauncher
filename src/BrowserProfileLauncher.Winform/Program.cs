@@ -1,6 +1,7 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
 using BrowserProfileLauncher.Application.MapperProfiles;
+using BrowserProfileLauncher.Core.Dependencies;
 using BrowserProfileLauncher.Core.EntityFramework.DbContexts;
 using BrowserProfileLauncher.Core.EntityFramework.Entities.Identities;
 using BrowserProfileLauncher.Services.Accounts;
@@ -72,6 +73,7 @@ namespace BrowserProfileLauncher.Winform
                            var mapper = mapperConfig.CreateMapper();
                            services.AddSingleton(mapper);
 
+                           services.UseSeleniumProxyServer();
 
                            services.AddSingleton<LoginForm>()
                                    .AddScoped<IAccountService, AccountService>()

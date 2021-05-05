@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrowserProfileLauncher.DbMi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{DC05D7E5-04A1-46CA-B18A-898854992879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserProfileLauncher.Application", "BrowserProfileLauncher.Application\BrowserProfileLauncher.Application.csproj", "{992641CC-BD66-4BF7-81E1-051961223A89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrowserProfileLauncher.Application", "BrowserProfileLauncher.Application\BrowserProfileLauncher.Application.csproj", "{992641CC-BD66-4BF7-81E1-051961223A89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserProfileLauncher.Core", "BrowserProfileLauncher.Core\BrowserProfileLauncher.Core.csproj", "{986D84E4-62B9-4E66-A2EA-D32F64458578}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{992641CC-BD66-4BF7-81E1-051961223A89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{992641CC-BD66-4BF7-81E1-051961223A89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{992641CC-BD66-4BF7-81E1-051961223A89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{986D84E4-62B9-4E66-A2EA-D32F64458578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{986D84E4-62B9-4E66-A2EA-D32F64458578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{986D84E4-62B9-4E66-A2EA-D32F64458578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{986D84E4-62B9-4E66-A2EA-D32F64458578}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +62,7 @@ Global
 		{7AFD1569-53FA-4B2B-A561-A2779772CA38} = {DC05D7E5-04A1-46CA-B18A-898854992879}
 		{AA3D2936-6359-4706-AE06-BDBFE983D1B3} = {DC05D7E5-04A1-46CA-B18A-898854992879}
 		{992641CC-BD66-4BF7-81E1-051961223A89} = {DC05D7E5-04A1-46CA-B18A-898854992879}
+		{986D84E4-62B9-4E66-A2EA-D32F64458578} = {DC05D7E5-04A1-46CA-B18A-898854992879}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0C3D918-4ACA-458F-BB43-ADD39920E955}

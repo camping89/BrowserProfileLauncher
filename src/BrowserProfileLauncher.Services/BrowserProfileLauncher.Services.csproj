@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BrowserProfileLauncher.Application\BrowserProfileLauncher.Application.csproj" />
     <ProjectReference Include="..\BrowserProfileLauncher.Core.EntityFramework\BrowserProfileLauncher.Core.EntityFramework.csproj" />
+    <ProjectReference Include="..\BrowserProfileLauncher.Core\BrowserProfileLauncher.Core.csproj" />
   </ItemGroup>
 
 </Project>

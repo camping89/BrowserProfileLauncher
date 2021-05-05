@@ -182,7 +182,7 @@ namespace BrowserProfileLauncher.Winform
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Name = "LoginForm";
             this.Padding = new System.Windows.Forms.Padding(200, 100, 200, 100);
-            this.Text = "LoginForm";
+            this.Text = "Login";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
