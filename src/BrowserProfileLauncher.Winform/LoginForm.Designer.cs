@@ -35,7 +35,6 @@ namespace BrowserProfileLauncher.Winform
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblError = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
@@ -103,7 +102,6 @@ namespace BrowserProfileLauncher.Winform
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Controls.Add(this.lblError);
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.txtUsername);
@@ -112,20 +110,6 @@ namespace BrowserProfileLauncher.Winform
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(796, 269);
             this.panel1.TabIndex = 4;
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.BackColor = System.Drawing.Color.White;
-            this.lblError.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(286, 26);
-            this.lblError.Name = "lblError";
-            this.lblError.Padding = new System.Windows.Forms.Padding(3);
-            this.lblError.Size = new System.Drawing.Size(225, 27);
-            this.lblError.TabIndex = 6;
-            this.lblError.Text = "Invalid username or password";
-            this.lblError.Visible = false;
             // 
             // btnLogin
             // 
@@ -205,6 +189,5 @@ namespace BrowserProfileLauncher.Winform
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblError;
     }
 }

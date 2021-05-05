@@ -39,13 +39,14 @@ namespace BrowserProfileLauncher.Winform
                 Global.CurrentUser = user;
                 var mainForm = new MainForm(_serviceProvider);
                 mainForm.Closed += (s, args) => Close();
-                lblError.Visible = false;
                 Hide();
                 mainForm.Show();
             }
-
-            lblError.Visible = true;
-            btnLogin.Enabled = true;
+            else
+            {
+                btnLogin.Enabled = true;
+                MessageBox.Show("Invalid username or password", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
