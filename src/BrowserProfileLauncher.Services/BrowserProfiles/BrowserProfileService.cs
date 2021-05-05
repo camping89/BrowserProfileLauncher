@@ -2,14 +2,17 @@
 using Arch.EntityFrameworkCore.UnitOfWork.Collections;
 using AutoMapper;
 using BrowserProfileLauncher.Application.Models;
+using BrowserProfileLauncher.Common.Helpers;
 using BrowserProfileLauncher.Core.EntityFramework.DbContexts;
 using BrowserProfileLauncher.Core.EntityFramework.Entities;
 using BrowserProfileLauncher.Core.ProxyServers;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -49,10 +52,16 @@ namespace BrowserProfileLauncher.Services.BrowserProfiles
             }
         }
 
-        public IPagedList<BrowserProfileModel> GetPagedList(UserModel user, int pageSize = 10, int pageIndex = 0)
+        public IPagedList<BrowserProfileModel> GetPagedList(UserModel user, int pageSize = 10, int pageIndex = 0, string search = null)
         {
+            var conditions = new List<Expression<Func<BrowserProfile, bool>>> { x => x.UserId == user.Id || (x.GroupId != null && user.ProfileGroupIds.Contains(x.GroupId.Value)) };
+            if (!string.IsNullOrEmpty(search))
+            {
+                conditions.Add(x => x.ProfileName.Contains(search));
+            }
+            var predicate = conditions.Aggregate((a, b) => a.And(b));
             var pagedList = _unitOfWork.GetRepository<BrowserProfile>()
-                                  .GetPagedList(predicate: x => x.UserId == user.Id || (x.GroupId != null && user.ProfileGroupIds.Contains(x.GroupId.Value)),
+                                  .GetPagedList(predicate: predicate,
                                                      pageSize: pageSize,
                                                      pageIndex: pageIndex,
                                                      orderBy: x => x.OrderBy(y => y.ProfileName),

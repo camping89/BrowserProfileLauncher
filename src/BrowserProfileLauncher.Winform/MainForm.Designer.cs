@@ -37,7 +37,6 @@
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.profileTabPage = new System.Windows.Forms.TabPage();
             this.profileTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCreateProfile = new System.Windows.Forms.Button();
             this.browserProfileDataGridView = new System.Windows.Forms.DataGridView();
             this.ProfileId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +50,10 @@
             this.DeleteProfile = new System.Windows.Forms.DataGridViewButtonColumn();
             this.PingProxy = new System.Windows.Forms.DataGridViewButtonColumn();
             this.LaunchBrowser = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.profleTableLayoutHeaderPanel = new System.Windows.Forms.Panel();
+            this.btnSearchProfile = new System.Windows.Forms.Button();
+            this.txtSearchProfileName = new System.Windows.Forms.TextBox();
+            this.btnCreateProfile = new System.Windows.Forms.Button();
             this.userTabPage = new System.Windows.Forms.TabPage();
             this.userTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.userDataGridView = new System.Windows.Forms.DataGridView();
@@ -86,6 +89,7 @@
             this.profileTabPage.SuspendLayout();
             this.profileTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileDataGridView)).BeginInit();
+            this.profleTableLayoutHeaderPanel.SuspendLayout();
             this.userTabPage.SuspendLayout();
             this.userTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
@@ -125,8 +129,8 @@
             // 
             this.profileTableLayoutPanel.ColumnCount = 1;
             this.profileTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.profileTableLayoutPanel.Controls.Add(this.btnCreateProfile, 0, 0);
             this.profileTableLayoutPanel.Controls.Add(this.browserProfileDataGridView, 0, 1);
+            this.profileTableLayoutPanel.Controls.Add(this.profleTableLayoutHeaderPanel, 0, 0);
             this.profileTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profileTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.profileTableLayoutPanel.Name = "profileTableLayoutPanel";
@@ -138,22 +142,10 @@
             this.profileTableLayoutPanel.Size = new System.Drawing.Size(1214, 321);
             this.profileTableLayoutPanel.TabIndex = 1;
             // 
-            // btnCreateProfile
-            // 
-            this.btnCreateProfile.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCreateProfile.Location = new System.Drawing.Point(1086, 3);
-            this.btnCreateProfile.Name = "btnCreateProfile";
-            this.btnCreateProfile.Padding = new System.Windows.Forms.Padding(5);
-            this.btnCreateProfile.Size = new System.Drawing.Size(125, 41);
-            this.btnCreateProfile.TabIndex = 0;
-            this.btnCreateProfile.Text = "Create New";
-            this.btnCreateProfile.UseVisualStyleBackColor = true;
-            this.btnCreateProfile.Click += new System.EventHandler(this.BtnCreateProfile_Click);
-            // 
             // browserProfileDataGridView
             // 
             this.browserProfileDataGridView.AllowUserToAddRows = false;
-            this.browserProfileDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.browserProfileDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.browserProfileDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -180,7 +172,7 @@
             this.PingProxy,
             this.LaunchBrowser});
             this.browserProfileDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
-            this.browserProfileDataGridView.Location = new System.Drawing.Point(3, 50);
+            this.browserProfileDataGridView.Location = new System.Drawing.Point(3, 48);
             this.browserProfileDataGridView.MultiSelect = false;
             this.browserProfileDataGridView.Name = "browserProfileDataGridView";
             this.browserProfileDataGridView.ReadOnly = true;
@@ -299,6 +291,53 @@
             this.LaunchBrowser.Text = "Launch Browser";
             this.LaunchBrowser.ToolTipText = "Launch Browser With This Proxy Profile";
             this.LaunchBrowser.UseColumnTextForButtonValue = true;
+            // 
+            // profleTableLayoutHeaderPanel
+            // 
+            this.profleTableLayoutHeaderPanel.Controls.Add(this.btnSearchProfile);
+            this.profleTableLayoutHeaderPanel.Controls.Add(this.txtSearchProfileName);
+            this.profleTableLayoutHeaderPanel.Controls.Add(this.btnCreateProfile);
+            this.profleTableLayoutHeaderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.profleTableLayoutHeaderPanel.Location = new System.Drawing.Point(0, 0);
+            this.profleTableLayoutHeaderPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.profleTableLayoutHeaderPanel.Name = "profleTableLayoutHeaderPanel";
+            this.profleTableLayoutHeaderPanel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.profleTableLayoutHeaderPanel.Size = new System.Drawing.Size(1214, 45);
+            this.profleTableLayoutHeaderPanel.TabIndex = 1;
+            // 
+            // btnSearchProfile
+            // 
+            this.btnSearchProfile.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSearchProfile.Location = new System.Drawing.Point(278, 2);
+            this.btnSearchProfile.Name = "btnSearchProfile";
+            this.btnSearchProfile.Size = new System.Drawing.Size(105, 40);
+            this.btnSearchProfile.TabIndex = 2;
+            this.btnSearchProfile.Text = "Search";
+            this.btnSearchProfile.UseVisualStyleBackColor = true;
+            this.btnSearchProfile.Click += new System.EventHandler(this.BtnSearchProfile_Click);
+            // 
+            // txtSearchProfileName
+            // 
+            this.txtSearchProfileName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtSearchProfileName.Location = new System.Drawing.Point(4, 3);
+            this.txtSearchProfileName.MinimumSize = new System.Drawing.Size(274, 38);
+            this.txtSearchProfileName.Multiline = true;
+            this.txtSearchProfileName.Name = "txtSearchProfileName";
+            this.txtSearchProfileName.PlaceholderText = "search";
+            this.txtSearchProfileName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSearchProfileName.Size = new System.Drawing.Size(274, 38);
+            this.txtSearchProfileName.TabIndex = 1;
+            // 
+            // btnCreateProfile
+            // 
+            this.btnCreateProfile.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCreateProfile.Location = new System.Drawing.Point(1085, 2);
+            this.btnCreateProfile.Name = "btnCreateProfile";
+            this.btnCreateProfile.Size = new System.Drawing.Size(125, 40);
+            this.btnCreateProfile.TabIndex = 0;
+            this.btnCreateProfile.Text = "Create New";
+            this.btnCreateProfile.UseVisualStyleBackColor = true;
+            this.btnCreateProfile.Click += new System.EventHandler(this.BtnCreateProfile_Click);
             // 
             // userTabPage
             // 
@@ -636,6 +675,8 @@
             this.profileTabPage.ResumeLayout(false);
             this.profileTableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileDataGridView)).EndInit();
+            this.profleTableLayoutHeaderPanel.ResumeLayout(false);
+            this.profleTableLayoutHeaderPanel.PerformLayout();
             this.userTabPage.ResumeLayout(false);
             this.userTableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
@@ -661,7 +702,6 @@
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem menuItemAccount;
         private System.Windows.Forms.ToolStripMenuItem menuItemAccount_Logout;
-        private System.Windows.Forms.Button btnCreateProfile;
         private System.Windows.Forms.TableLayoutPanel profileTableLayoutPanel;
         private System.Windows.Forms.DataGridView browserProfileDataGridView;
         private System.Windows.Forms.TableLayoutPanel mainFormTableLayoutPanel;
@@ -702,5 +742,9 @@
         private System.Windows.Forms.DataGridViewButtonColumn EditProfile;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteProfile;
         private System.Windows.Forms.DataGridViewButtonColumn LaunchBrowser;
+        private System.Windows.Forms.Panel profleTableLayoutHeaderPanel;
+        private System.Windows.Forms.Button btnSearchProfile;
+        private System.Windows.Forms.TextBox txtSearchProfileName;
+        private System.Windows.Forms.Button btnCreateProfile;
     }
 }

@@ -39,6 +39,35 @@ namespace BrowserProfileLauncher.Winform
             LoadBrowserProfiles();
         }
 
+        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (mainTabControl.SelectedIndex)
+            {
+                case 0:
+                    LoadBrowserProfiles();
+                    break;
+                case 1:
+                    LoadUsers();
+                    break;
+                case 2:
+                    LoadProfileGroups();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var workers = Process.GetProcessesByName("chromedriver");
+            foreach (Process worker in workers)
+            {
+                worker.Kill();
+                worker.WaitForExit();
+                worker.Dispose();
+            }
+        }
+
         private void SetupComponentVisibilities()
         {
             if (!Global.CurrentUser.RoleNames.Contains(RoleNameConstants.AdminRole))
@@ -68,10 +97,15 @@ namespace BrowserProfileLauncher.Winform
         #endregion
 
         #region Browser Profiles methods
-
-        private void LoadBrowserProfiles(int pageIndex = 0)
+        private void BtnSearchProfile_Click(object sender, EventArgs e)
         {
-            var pagedList = _browserProfileService.GetPagedList(Global.CurrentUser, pageIndex: pageIndex);
+            var search = txtSearchProfileName.Text;
+            LoadBrowserProfiles(0, search);
+        }
+
+        private void LoadBrowserProfiles(int pageIndex = 0, string search = null)
+        {
+            var pagedList = _browserProfileService.GetPagedList(Global.CurrentUser, pageIndex: pageIndex, search: search);
             browserProfileDataGridView.AutoGenerateColumns = false;
             browserProfileBindingSource.DataSource = pagedList.Items;
             browserProfileDataGridView.Columns[0].Visible = false;
@@ -409,35 +443,6 @@ namespace BrowserProfileLauncher.Winform
             newUserForm.Dispose();
         }
 
-        #endregion
-
-        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (mainTabControl.SelectedIndex)
-            {
-                case 0:
-                    LoadBrowserProfiles();
-                    break;
-                case 1:
-                    LoadUsers();
-                    break;
-                case 2:
-                    LoadProfileGroups();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            var workers = Process.GetProcessesByName("chromedriver");
-            foreach (Process worker in workers)
-            {
-                worker.Kill();
-                worker.WaitForExit();
-                worker.Dispose();
-            }
-        }
+        #endregion        
     }
 }
