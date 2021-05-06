@@ -1,4 +1,5 @@
-﻿using BrowserProfileLauncher.Application.Models;
+﻿using Arch.EntityFrameworkCore.UnitOfWork.Collections;
+using BrowserProfileLauncher.Application.Models;
 using BrowserProfileLauncher.Common.Constants;
 using BrowserProfileLauncher.Services.Accounts;
 using BrowserProfileLauncher.Services.BrowserProfiles;
@@ -19,6 +20,9 @@ namespace BrowserProfileLauncher.Winform
         private readonly IAccountService _accountService;
         private readonly IProfileGroupService _profileGroupService;
         private readonly IServiceProvider _serviceProvider;
+        private PaginationModel ProfilesPagination;
+        private PaginationModel UsersPagination;
+        private PaginationModel ProfileGroupsPagination;
         public MainForm(IServiceProvider serviceProvider)
         {
             InitializeComponent();
@@ -29,6 +33,9 @@ namespace BrowserProfileLauncher.Winform
             _accountService = serviceProvider.GetRequiredService<IAccountService>();
             _profileGroupService = serviceProvider.GetRequiredService<IProfileGroupService>();
             _serviceProvider = serviceProvider;
+            ProfilesPagination = new PaginationModel { PageSize = 2 };
+            UsersPagination = new PaginationModel();
+            ProfileGroupsPagination = new PaginationModel();
         }
 
         #region general private class methods
@@ -94,21 +101,45 @@ namespace BrowserProfileLauncher.Winform
             this.Dispose();
         }
 
+        private void UpdatePaginationDetails<T>(PaginationModel pagination, IPagedList<T> pagedList)
+        {
+            pagination.TotalPages = pagedList.TotalPages;
+            pagination.HasNextPage = pagedList.HasNextPage;
+            pagination.HasPreviousPage = pagedList.HasPreviousPage;
+            pagination.IndexFrom = pagedList.IndexFrom;
+            pagination.TotalCount = pagedList.TotalCount;
+            pagination.PageIndex = pagedList.PageIndex;
+            pagination.PageSize = pagedList.PageSize;
+        }
+
         #endregion
 
         #region Browser Profiles methods
         private void BtnSearchProfile_Click(object sender, EventArgs e)
         {
-            var search = txtSearchProfileName.Text;
-            LoadBrowserProfiles(0, search);
+            LoadBrowserProfiles();
         }
 
-        private void LoadBrowserProfiles(int pageIndex = 0, string search = null)
+        private void LoadBrowserProfiles()
         {
-            var pagedList = _browserProfileService.GetPagedList(Global.CurrentUser, pageIndex: pageIndex, search: search);
+            var search = txtSearchProfileName.Text;
+            var pagedList = _browserProfileService.GetPagedList(Global.CurrentUser, pageSize: ProfilesPagination.PageSize, pageIndex: ProfilesPagination.PageIndex, search: search);
             browserProfileDataGridView.AutoGenerateColumns = false;
             browserProfileBindingSource.DataSource = pagedList.Items;
             browserProfileDataGridView.Columns[0].Visible = false;
+
+            UpdatePaginationDetails(ProfilesPagination, pagedList);
+            UpdateProfilePaginationVisibilities();
+        }
+
+        private void UpdateProfilePaginationVisibilities()
+        {
+            txtCurrentProfilePage.Maximum = ProfilesPagination.TotalPages;
+            txtCurrentProfilePage.Value = ProfilesPagination.PageIndex + 1;
+            btnPreviousProfilePage.Enabled = ProfilesPagination.HasPreviousPage;
+            btnFirstProfilePage.Enabled = ProfilesPagination.HasPreviousPage;
+            btnNextProfilePage.Enabled = ProfilesPagination.HasNextPage;
+            btnLastProfilePage.Enabled = ProfilesPagination.HasNextPage;
         }
 
         private async void BrowserProfileDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -240,6 +271,36 @@ namespace BrowserProfileLauncher.Winform
                 LoadBrowserProfiles();
             };
             newProfileForm.Dispose();
+        }
+
+        private void BtnFirstProfilePage_Click(object sender, EventArgs e)
+        {
+            ProfilesPagination.PageIndex = 0;
+            LoadBrowserProfiles();
+        }
+
+        private void BtnPreviousProfilePage_Click(object sender, EventArgs e)
+        {
+            ProfilesPagination.PageIndex--;
+            LoadBrowserProfiles();
+        }
+
+        private void BtnNextProfilePage_Click(object sender, EventArgs e)
+        {
+            ProfilesPagination.PageIndex++;
+            LoadBrowserProfiles();
+        }
+
+        private void BtnLastProfilePage_Click(object sender, EventArgs e)
+        {
+            ProfilesPagination.PageIndex = ProfilesPagination.TotalPages - 1;
+            LoadBrowserProfiles();
+        }
+
+        private void TxtCurrentProfilePage_ValueChanged(object sender, EventArgs e)
+        {
+            ProfilesPagination.PageIndex = (int)txtCurrentProfilePage.Value - 1;
+            LoadBrowserProfiles();
         }
 
         #endregion
@@ -443,6 +504,6 @@ namespace BrowserProfileLauncher.Winform
             newUserForm.Dispose();
         }
 
-        #endregion        
+        #endregion      
     }
 }
