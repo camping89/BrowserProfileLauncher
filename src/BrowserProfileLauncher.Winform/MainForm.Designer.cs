@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.browserProfileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.profileTabPage = new System.Windows.Forms.TabPage();
@@ -55,6 +55,8 @@
             this.txtSearchProfileName = new System.Windows.Forms.TextBox();
             this.btnCreateProfile = new System.Windows.Forms.Button();
             this.profilePaginationPanel = new System.Windows.Forms.Panel();
+            this.lblProfileTotalPages = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtCurrentProfilePage = new System.Windows.Forms.NumericUpDown();
             this.btnFirstProfilePage = new System.Windows.Forms.Button();
             this.btnPreviousProfilePage = new System.Windows.Forms.Button();
@@ -62,6 +64,8 @@
             this.btnNextProfilePage = new System.Windows.Forms.Button();
             this.userTabPage = new System.Windows.Forms.TabPage();
             this.userTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.userDataGridView = new System.Windows.Forms.DataGridView();
             this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +74,8 @@
             this.ChangeUserPassword = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnCreateUser = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTotalUserPages = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtCurrentUserPage = new System.Windows.Forms.NumericUpDown();
             this.btnFirstUserPage = new System.Windows.Forms.Button();
             this.btnPreviousUserPage = new System.Windows.Forms.Button();
@@ -84,6 +90,14 @@
             this.EditProfileGroup = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteProfileGroup = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnCreateProfileGroup = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblTotalProfileGroupPages = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCurrentProfileGroupPage = new System.Windows.Forms.NumericUpDown();
+            this.btnFirstProfileGroupPage = new System.Windows.Forms.Button();
+            this.btnPreviousProfileGroupPage = new System.Windows.Forms.Button();
+            this.btnLastProfileGroupPage = new System.Windows.Forms.Button();
+            this.btnNextProfileGroupPage = new System.Windows.Forms.Button();
             this.ProfieGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProfilesCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -112,6 +126,8 @@
             this.profileGroupTabPage.SuspendLayout();
             this.profileGroupTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profileGroupDataGridView)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCurrentProfileGroupPage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profileGroupBindingSource)).BeginInit();
             this.mainMenu.SuspendLayout();
             this.mainFormTableLayoutPanel.SuspendLayout();
@@ -164,15 +180,15 @@
             this.browserProfileDataGridView.AllowUserToAddRows = false;
             this.browserProfileDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.browserProfileDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.browserProfileDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.browserProfileDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.browserProfileDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.browserProfileDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProfileId,
@@ -194,15 +210,15 @@
             this.browserProfileDataGridView.Name = "browserProfileDataGridView";
             this.browserProfileDataGridView.ReadOnly = true;
             this.browserProfileDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.browserProfileDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.browserProfileDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.browserProfileDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.browserProfileDataGridView.RowTemplate.Height = 25;
             this.browserProfileDataGridView.Size = new System.Drawing.Size(1208, 400);
@@ -358,6 +374,8 @@
             // 
             // profilePaginationPanel
             // 
+            this.profilePaginationPanel.Controls.Add(this.lblProfileTotalPages);
+            this.profilePaginationPanel.Controls.Add(this.label6);
             this.profilePaginationPanel.Controls.Add(this.txtCurrentProfilePage);
             this.profilePaginationPanel.Controls.Add(this.btnFirstProfilePage);
             this.profilePaginationPanel.Controls.Add(this.btnPreviousProfilePage);
@@ -368,6 +386,27 @@
             this.profilePaginationPanel.Name = "profilePaginationPanel";
             this.profilePaginationPanel.Size = new System.Drawing.Size(1208, 90);
             this.profilePaginationPanel.TabIndex = 2;
+            // 
+            // lblProfileTotalPages
+            // 
+            this.lblProfileTotalPages.AutoSize = true;
+            this.lblProfileTotalPages.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblProfileTotalPages.Location = new System.Drawing.Point(84, 13);
+            this.lblProfileTotalPages.Name = "lblProfileTotalPages";
+            this.lblProfileTotalPages.Size = new System.Drawing.Size(101, 21);
+            this.lblProfileTotalPages.TabIndex = 6;
+            this.lblProfileTotalPages.Text = "{{totalPages}}";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(1, 13);
+            this.label6.Name = "label6";
+            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label6.Size = new System.Drawing.Size(89, 21);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Total Pages:";
             // 
             // txtCurrentProfilePage
             // 
@@ -458,6 +497,8 @@
             // 
             this.userTableLayoutPanel.ColumnCount = 1;
             this.userTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.userTableLayoutPanel.Controls.Add(this.label2, 0, 3);
+            this.userTableLayoutPanel.Controls.Add(this.label3, 0, 4);
             this.userTableLayoutPanel.Controls.Add(this.userDataGridView, 0, 1);
             this.userTableLayoutPanel.Controls.Add(this.btnCreateUser, 0, 0);
             this.userTableLayoutPanel.Controls.Add(this.panel1, 0, 2);
@@ -465,26 +506,48 @@
             this.userTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.userTableLayoutPanel.Name = "userTableLayoutPanel";
             this.userTableLayoutPanel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.userTableLayoutPanel.RowCount = 3;
+            this.userTableLayoutPanel.RowCount = 5;
             this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.userTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.userTableLayoutPanel.Size = new System.Drawing.Size(1214, 542);
             this.userTableLayoutPanel.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1133, 559);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 15);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "{{totalPages}}";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(1122, 579);
+            this.label3.Name = "label3";
+            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label3.Size = new System.Drawing.Size(89, 20);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Total Pages:";
             // 
             // userDataGridView
             // 
             this.userDataGridView.AllowUserToAddRows = false;
             this.userDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.userDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserId,
@@ -558,6 +621,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblTotalUserPages);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtCurrentUserPage);
             this.panel1.Controls.Add(this.btnFirstUserPage);
             this.panel1.Controls.Add(this.btnPreviousUserPage);
@@ -568,6 +633,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1208, 100);
             this.panel1.TabIndex = 2;
+            // 
+            // lblTotalUserPages
+            // 
+            this.lblTotalUserPages.AutoSize = true;
+            this.lblTotalUserPages.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalUserPages.Location = new System.Drawing.Point(85, 13);
+            this.lblTotalUserPages.Name = "lblTotalUserPages";
+            this.lblTotalUserPages.Size = new System.Drawing.Size(101, 21);
+            this.lblTotalUserPages.TabIndex = 18;
+            this.lblTotalUserPages.Text = "{{totalPages}}";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(3, 13);
+            this.label5.Name = "label5";
+            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label5.Size = new System.Drawing.Size(89, 21);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Total Pages:";
             // 
             // txtCurrentUserPage
             // 
@@ -659,6 +745,7 @@
             this.profileGroupTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.profileGroupTableLayoutPanel.Controls.Add(this.profileGroupDataGridView, 0, 1);
             this.profileGroupTableLayoutPanel.Controls.Add(this.btnCreateProfileGroup, 0, 0);
+            this.profileGroupTableLayoutPanel.Controls.Add(this.panel2, 0, 2);
             this.profileGroupTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profileGroupTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.profileGroupTableLayoutPanel.Name = "profileGroupTableLayoutPanel";
@@ -674,15 +761,15 @@
             // 
             this.profileGroupDataGridView.AllowUserToAddRows = false;
             this.profileGroupDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.profileGroupDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.profileGroupDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.profileGroupDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.profileGroupDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.profileGroupId,
@@ -696,7 +783,7 @@
             this.profileGroupDataGridView.ReadOnly = true;
             this.profileGroupDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.profileGroupDataGridView.RowTemplate.Height = 25;
-            this.profileGroupDataGridView.Size = new System.Drawing.Size(1208, 250);
+            this.profileGroupDataGridView.Size = new System.Drawing.Size(1208, 400);
             this.profileGroupDataGridView.TabIndex = 0;
             this.profileGroupDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProfileGroupDataGridView_CellContentClick);
             this.profileGroupDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.ProfileGroupDataGridView_UserDeletingRow);
@@ -752,6 +839,115 @@
             this.btnCreateProfileGroup.Text = "Create New";
             this.btnCreateProfileGroup.UseVisualStyleBackColor = true;
             this.btnCreateProfileGroup.Click += new System.EventHandler(this.BtnCreateProfileGroup_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblTotalProfileGroupPages);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.txtCurrentProfileGroupPage);
+            this.panel2.Controls.Add(this.btnFirstProfileGroupPage);
+            this.panel2.Controls.Add(this.btnPreviousProfileGroupPage);
+            this.panel2.Controls.Add(this.btnLastProfileGroupPage);
+            this.panel2.Controls.Add(this.btnNextProfileGroupPage);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.panel2.Location = new System.Drawing.Point(3, 456);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1208, 83);
+            this.panel2.TabIndex = 2;
+            // 
+            // lblTotalProfileGroupPages
+            // 
+            this.lblTotalProfileGroupPages.AutoSize = true;
+            this.lblTotalProfileGroupPages.Location = new System.Drawing.Point(86, 13);
+            this.lblTotalProfileGroupPages.Name = "lblTotalProfileGroupPages";
+            this.lblTotalProfileGroupPages.Size = new System.Drawing.Size(101, 21);
+            this.lblTotalProfileGroupPages.TabIndex = 16;
+            this.lblTotalProfileGroupPages.Text = "{{totalPages}}";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(3, 13);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label1.Size = new System.Drawing.Size(89, 21);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Total Pages:";
+            // 
+            // txtCurrentProfileGroupPage
+            // 
+            this.txtCurrentProfileGroupPage.AutoSize = true;
+            this.txtCurrentProfileGroupPage.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCurrentProfileGroupPage.Location = new System.Drawing.Point(889, 0);
+            this.txtCurrentProfileGroupPage.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.txtCurrentProfileGroupPage.MaximumSize = new System.Drawing.Size(91, 0);
+            this.txtCurrentProfileGroupPage.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtCurrentProfileGroupPage.MinimumSize = new System.Drawing.Size(91, 0);
+            this.txtCurrentProfileGroupPage.Name = "txtCurrentProfileGroupPage";
+            this.txtCurrentProfileGroupPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCurrentProfileGroupPage.Size = new System.Drawing.Size(91, 34);
+            this.txtCurrentProfileGroupPage.TabIndex = 14;
+            this.txtCurrentProfileGroupPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCurrentProfileGroupPage.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtCurrentProfileGroupPage.ValueChanged += new System.EventHandler(this.TxtCurrentProfileGroupPage_ValueChanged);
+            // 
+            // btnFirstProfileGroupPage
+            // 
+            this.btnFirstProfileGroupPage.Location = new System.Drawing.Point(661, 0);
+            this.btnFirstProfileGroupPage.Name = "btnFirstProfileGroupPage";
+            this.btnFirstProfileGroupPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnFirstProfileGroupPage.Size = new System.Drawing.Size(108, 35);
+            this.btnFirstProfileGroupPage.TabIndex = 13;
+            this.btnFirstProfileGroupPage.Text = "|<<";
+            this.btnFirstProfileGroupPage.UseVisualStyleBackColor = true;
+            this.btnFirstProfileGroupPage.Click += new System.EventHandler(this.BtnFirstProfileGroupPage_Click);
+            // 
+            // btnPreviousProfileGroupPage
+            // 
+            this.btnPreviousProfileGroupPage.Location = new System.Drawing.Point(775, 0);
+            this.btnPreviousProfileGroupPage.Name = "btnPreviousProfileGroupPage";
+            this.btnPreviousProfileGroupPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnPreviousProfileGroupPage.Size = new System.Drawing.Size(108, 35);
+            this.btnPreviousProfileGroupPage.TabIndex = 12;
+            this.btnPreviousProfileGroupPage.Text = "<";
+            this.btnPreviousProfileGroupPage.UseVisualStyleBackColor = true;
+            this.btnPreviousProfileGroupPage.Click += new System.EventHandler(this.BtnPreviousProfileGroupPage_Click);
+            // 
+            // btnLastProfileGroupPage
+            // 
+            this.btnLastProfileGroupPage.Location = new System.Drawing.Point(1100, 0);
+            this.btnLastProfileGroupPage.Name = "btnLastProfileGroupPage";
+            this.btnLastProfileGroupPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnLastProfileGroupPage.Size = new System.Drawing.Size(108, 35);
+            this.btnLastProfileGroupPage.TabIndex = 11;
+            this.btnLastProfileGroupPage.Text = ">>|";
+            this.btnLastProfileGroupPage.UseVisualStyleBackColor = true;
+            this.btnLastProfileGroupPage.Click += new System.EventHandler(this.BtnLastProfileGroupPage_Click);
+            // 
+            // btnNextProfileGroupPage
+            // 
+            this.btnNextProfileGroupPage.Location = new System.Drawing.Point(986, 0);
+            this.btnNextProfileGroupPage.Name = "btnNextProfileGroupPage";
+            this.btnNextProfileGroupPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnNextProfileGroupPage.Size = new System.Drawing.Size(108, 35);
+            this.btnNextProfileGroupPage.TabIndex = 10;
+            this.btnNextProfileGroupPage.Text = ">";
+            this.btnNextProfileGroupPage.UseVisualStyleBackColor = true;
+            this.btnNextProfileGroupPage.Click += new System.EventHandler(this.BtnNextProfileGroupPage_Click);
             // 
             // ProfieGroupId
             // 
@@ -872,6 +1068,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCurrentProfilePage)).EndInit();
             this.userTabPage.ResumeLayout(false);
             this.userTableLayoutPanel.ResumeLayout(false);
+            this.userTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -879,6 +1076,9 @@
             this.profileGroupTabPage.ResumeLayout(false);
             this.profileGroupTableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.profileGroupDataGridView)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCurrentProfileGroupPage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profileGroupBindingSource)).EndInit();
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
@@ -954,5 +1154,19 @@
         private System.Windows.Forms.Button btnPreviousUserPage;
         private System.Windows.Forms.Button btnLastUserPage;
         private System.Windows.Forms.Button btnNextUserPage;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.NumericUpDown txtCurrentProfileGroupPage;
+        private System.Windows.Forms.Button btnFirstProfileGroupPage;
+        private System.Windows.Forms.Button btnPreviousProfileGroupPage;
+        private System.Windows.Forms.Button btnLastProfileGroupPage;
+        private System.Windows.Forms.Button btnNextProfileGroupPage;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblTotalProfileGroupPages;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTotalUserPages;
+        private System.Windows.Forms.Label lblProfileTotalPages;
+        private System.Windows.Forms.Label label6;
     }
 }

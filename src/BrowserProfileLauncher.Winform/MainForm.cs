@@ -98,7 +98,7 @@ namespace BrowserProfileLauncher.Winform
             var loginForm = new LoginForm(_serviceProvider);
             Hide();
             loginForm.Show();
-            this.Dispose();
+            Dispose();
         }
 
         private void UpdatePaginationDetails<T>(PaginationModel pagination, IPagedList<T> pagedList)
@@ -140,6 +140,7 @@ namespace BrowserProfileLauncher.Winform
             btnFirstProfilePage.Enabled = ProfilesPagination.HasPreviousPage;
             btnNextProfilePage.Enabled = ProfilesPagination.HasNextPage;
             btnLastProfilePage.Enabled = ProfilesPagination.HasNextPage;
+            lblProfileTotalPages.Text = ProfilesPagination.TotalPages.ToString();
         }
 
         private async void BrowserProfileDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -307,12 +308,26 @@ namespace BrowserProfileLauncher.Winform
 
         #region Profile Groups
 
-        private void LoadProfileGroups(int pageIndex = 0)
+        private void LoadProfileGroups()
         {
-            var pagedList = _profileGroupService.GetPagedList(pageIndex: pageIndex);
+            var pagedList = _profileGroupService.GetPagedList(pageIndex: ProfileGroupsPagination.PageIndex, pageSize: ProfileGroupsPagination.PageSize);
             profileGroupDataGridView.AutoGenerateColumns = false;
             profileGroupBindingSource.DataSource = pagedList.Items;
             profileGroupDataGridView.Columns[0].Visible = false;
+
+            UpdatePaginationDetails(ProfileGroupsPagination, pagedList);
+            UpdateProfileGroupPaginationVisibilities();
+        }
+
+        private void UpdateProfileGroupPaginationVisibilities()
+        {
+            txtCurrentProfileGroupPage.Maximum = ProfileGroupsPagination.TotalPages;
+            txtCurrentProfileGroupPage.Value = ProfileGroupsPagination.PageIndex + 1;
+            btnPreviousProfileGroupPage.Enabled = ProfileGroupsPagination.HasPreviousPage;
+            btnFirstProfileGroupPage.Enabled = ProfileGroupsPagination.HasPreviousPage;
+            btnNextProfileGroupPage.Enabled = ProfileGroupsPagination.HasNextPage;
+            btnLastProfileGroupPage.Enabled = ProfileGroupsPagination.HasNextPage;
+            lblTotalProfileGroupPages.Text = ProfileGroupsPagination.TotalPages.ToString();
         }
 
         private async Task DeleteBrowserProfileGroup(ProfileGroupModel profile)
@@ -394,6 +409,35 @@ namespace BrowserProfileLauncher.Winform
             }
         }
 
+        private void BtnFirstProfileGroupPage_Click(object sender, EventArgs e)
+        {
+            ProfileGroupsPagination.PageIndex = 0;
+            LoadProfileGroups();
+        }
+
+        private void BtnPreviousProfileGroupPage_Click(object sender, EventArgs e)
+        {
+            ProfileGroupsPagination.PageIndex--;
+            LoadProfileGroups();
+        }
+
+        private void BtnNextProfileGroupPage_Click(object sender, EventArgs e)
+        {
+            ProfileGroupsPagination.PageIndex++;
+            LoadProfileGroups();
+        }
+
+        private void BtnLastProfileGroupPage_Click(object sender, EventArgs e)
+        {
+            ProfileGroupsPagination.PageIndex = ProfileGroupsPagination.TotalPages - 1;
+            LoadProfileGroups();
+        }
+
+        private void TxtCurrentProfileGroupPage_ValueChanged(object sender, EventArgs e)
+        {
+            ProfileGroupsPagination.PageIndex = (int)txtCurrentProfileGroupPage.Value - 1;
+            LoadProfileGroups();
+        }
 
         #endregion
 
@@ -418,6 +462,7 @@ namespace BrowserProfileLauncher.Winform
             btnFirstUserPage.Enabled = UsersPagination.HasPreviousPage;
             btnNextUserPage.Enabled = UsersPagination.HasNextPage;
             btnLastUserPage.Enabled = UsersPagination.HasNextPage;
+            lblTotalUserPages.Text = UsersPagination.TotalPages.ToString();
         }
 
         private async Task DeleteUserAccount(UserModel user)
