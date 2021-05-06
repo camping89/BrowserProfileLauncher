@@ -34,8 +34,8 @@ namespace BrowserProfileLauncher.Winform
             _profileGroupService = serviceProvider.GetRequiredService<IProfileGroupService>();
             _serviceProvider = serviceProvider;
             ProfilesPagination = new PaginationModel { PageSize = 2 };
-            UsersPagination = new PaginationModel();
-            ProfileGroupsPagination = new PaginationModel();
+            UsersPagination = new PaginationModel { PageSize = 2 };
+            ProfileGroupsPagination = new PaginationModel { PageSize = 2 };
         }
 
         #region general private class methods
@@ -399,12 +399,25 @@ namespace BrowserProfileLauncher.Winform
 
         #region users
 
-        private void LoadUsers(int pageIndex = 0)
+        private void LoadUsers()
         {
-            var pagedList = _accountService.GetPagedList(pageIndex: pageIndex);
+            var pagedList = _accountService.GetPagedList(pageIndex: UsersPagination.PageIndex, pageSize: UsersPagination.PageSize);
             userDataGridView.AutoGenerateColumns = false;
             userBindingSource.DataSource = pagedList.Items;
             userDataGridView.Columns[0].Visible = false;
+
+            UpdatePaginationDetails(UsersPagination, pagedList);
+            UpdateUserPaginationVisibilities();
+        }
+
+        private void UpdateUserPaginationVisibilities()
+        {
+            txtCurrentUserPage.Maximum = UsersPagination.TotalPages;
+            txtCurrentUserPage.Value = UsersPagination.PageIndex + 1;
+            btnPreviousUserPage.Enabled = UsersPagination.HasPreviousPage;
+            btnFirstUserPage.Enabled = UsersPagination.HasPreviousPage;
+            btnNextUserPage.Enabled = UsersPagination.HasNextPage;
+            btnLastUserPage.Enabled = UsersPagination.HasNextPage;
         }
 
         private async Task DeleteUserAccount(UserModel user)
@@ -504,6 +517,35 @@ namespace BrowserProfileLauncher.Winform
             newUserForm.Dispose();
         }
 
-        #endregion      
+        private void BtnFirstUserPage_Click(object sender, EventArgs e)
+        {
+            UsersPagination.PageIndex = 0;
+            LoadUsers();
+        }
+
+        private void BtnPreviousUserPage_Click(object sender, EventArgs e)
+        {
+            UsersPagination.PageIndex--;
+            LoadUsers();
+        }
+
+        private void BtnNextUserPage_Click(object sender, EventArgs e)
+        {
+            UsersPagination.PageIndex++;
+            LoadUsers();
+        }
+
+        private void BtnLastUserPage_Click(object sender, EventArgs e)
+        {
+            UsersPagination.PageIndex = UsersPagination.TotalPages - 1;
+            LoadUsers();
+        }
+
+        private void TxtCurrentUserPage_ValueChanged(object sender, EventArgs e)
+        {
+            UsersPagination.PageIndex = (int)txtCurrentUserPage.Value - 1;
+            LoadUsers();
+        }
+        #endregion
     }
 }

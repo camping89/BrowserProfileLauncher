@@ -53,9 +53,9 @@ namespace BrowserProfileLauncher.Winform
             this.lblNewPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblNewPassword.Location = new System.Drawing.Point(76, 99);
             this.lblNewPassword.Name = "lblNewPassword";
-            this.lblNewPassword.Size = new System.Drawing.Size(112, 21);
+            this.lblNewPassword.Size = new System.Drawing.Size(115, 21);
             this.lblNewPassword.TabIndex = 2;
-            this.lblNewPassword.Text = "New Password";
+            this.lblNewPassword.Text = "New Password:";
             // 
             // btnSave
             // 

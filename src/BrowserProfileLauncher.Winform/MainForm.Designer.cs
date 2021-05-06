@@ -69,6 +69,12 @@
             this.DeleteUser = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ChangeUserPassword = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnCreateUser = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtCurrentUserPage = new System.Windows.Forms.NumericUpDown();
+            this.btnFirstUserPage = new System.Windows.Forms.Button();
+            this.btnPreviousUserPage = new System.Windows.Forms.Button();
+            this.btnLastUserPage = new System.Windows.Forms.Button();
+            this.btnNextUserPage = new System.Windows.Forms.Button();
             this.profileGroupTabPage = new System.Windows.Forms.TabPage();
             this.profileGroupTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.profileGroupDataGridView = new System.Windows.Forms.DataGridView();
@@ -101,6 +107,8 @@
             this.userTabPage.SuspendLayout();
             this.userTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCurrentUserPage)).BeginInit();
             this.profileGroupTabPage.SuspendLayout();
             this.profileGroupTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profileGroupDataGridView)).BeginInit();
@@ -365,7 +373,7 @@
             // 
             this.txtCurrentProfilePage.AutoSize = true;
             this.txtCurrentProfilePage.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtCurrentProfilePage.Location = new System.Drawing.Point(888, 13);
+            this.txtCurrentProfilePage.Location = new System.Drawing.Point(888, 0);
             this.txtCurrentProfilePage.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -392,7 +400,7 @@
             // 
             // btnFirstProfilePage
             // 
-            this.btnFirstProfilePage.Location = new System.Drawing.Point(660, 13);
+            this.btnFirstProfilePage.Location = new System.Drawing.Point(660, 0);
             this.btnFirstProfilePage.Name = "btnFirstProfilePage";
             this.btnFirstProfilePage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnFirstProfilePage.Size = new System.Drawing.Size(108, 35);
@@ -403,7 +411,7 @@
             // 
             // btnPreviousProfilePage
             // 
-            this.btnPreviousProfilePage.Location = new System.Drawing.Point(774, 13);
+            this.btnPreviousProfilePage.Location = new System.Drawing.Point(774, 0);
             this.btnPreviousProfilePage.Name = "btnPreviousProfilePage";
             this.btnPreviousProfilePage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnPreviousProfilePage.Size = new System.Drawing.Size(108, 35);
@@ -414,7 +422,7 @@
             // 
             // btnLastProfilePage
             // 
-            this.btnLastProfilePage.Location = new System.Drawing.Point(1099, 13);
+            this.btnLastProfilePage.Location = new System.Drawing.Point(1099, 0);
             this.btnLastProfilePage.Name = "btnLastProfilePage";
             this.btnLastProfilePage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnLastProfilePage.Size = new System.Drawing.Size(108, 35);
@@ -425,7 +433,7 @@
             // 
             // btnNextProfilePage
             // 
-            this.btnNextProfilePage.Location = new System.Drawing.Point(985, 13);
+            this.btnNextProfilePage.Location = new System.Drawing.Point(985, 0);
             this.btnNextProfilePage.Name = "btnNextProfilePage";
             this.btnNextProfilePage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNextProfilePage.Size = new System.Drawing.Size(108, 35);
@@ -452,6 +460,7 @@
             this.userTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.userTableLayoutPanel.Controls.Add(this.userDataGridView, 0, 1);
             this.userTableLayoutPanel.Controls.Add(this.btnCreateUser, 0, 0);
+            this.userTableLayoutPanel.Controls.Add(this.panel1, 0, 2);
             this.userTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.userTableLayoutPanel.Name = "userTableLayoutPanel";
@@ -489,7 +498,7 @@
             this.userDataGridView.ReadOnly = true;
             this.userDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.userDataGridView.RowTemplate.Height = 25;
-            this.userDataGridView.Size = new System.Drawing.Size(1208, 250);
+            this.userDataGridView.Size = new System.Drawing.Size(1208, 400);
             this.userDataGridView.TabIndex = 0;
             this.userDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UserDataGridView_CellContentClick);
             this.userDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.UserDataGridView_UserDeletingRow);
@@ -546,6 +555,92 @@
             this.btnCreateUser.Text = "Create New";
             this.btnCreateUser.UseVisualStyleBackColor = true;
             this.btnCreateUser.Click += new System.EventHandler(this.BtnCreateUser_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtCurrentUserPage);
+            this.panel1.Controls.Add(this.btnFirstUserPage);
+            this.panel1.Controls.Add(this.btnPreviousUserPage);
+            this.panel1.Controls.Add(this.btnLastUserPage);
+            this.panel1.Controls.Add(this.btnNextUserPage);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 456);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1208, 100);
+            this.panel1.TabIndex = 2;
+            // 
+            // txtCurrentUserPage
+            // 
+            this.txtCurrentUserPage.AutoSize = true;
+            this.txtCurrentUserPage.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCurrentUserPage.Location = new System.Drawing.Point(887, 0);
+            this.txtCurrentUserPage.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.txtCurrentUserPage.MaximumSize = new System.Drawing.Size(91, 0);
+            this.txtCurrentUserPage.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtCurrentUserPage.MinimumSize = new System.Drawing.Size(91, 0);
+            this.txtCurrentUserPage.Name = "txtCurrentUserPage";
+            this.txtCurrentUserPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCurrentUserPage.Size = new System.Drawing.Size(91, 34);
+            this.txtCurrentUserPage.TabIndex = 9;
+            this.txtCurrentUserPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCurrentUserPage.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtCurrentUserPage.ValueChanged += new System.EventHandler(this.TxtCurrentUserPage_ValueChanged);
+            // 
+            // btnFirstUserPage
+            // 
+            this.btnFirstUserPage.Location = new System.Drawing.Point(659, 0);
+            this.btnFirstUserPage.Name = "btnFirstUserPage";
+            this.btnFirstUserPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnFirstUserPage.Size = new System.Drawing.Size(108, 35);
+            this.btnFirstUserPage.TabIndex = 8;
+            this.btnFirstUserPage.Text = "|<<";
+            this.btnFirstUserPage.UseVisualStyleBackColor = true;
+            this.btnFirstUserPage.Click += new System.EventHandler(this.BtnFirstUserPage_Click);
+            // 
+            // btnPreviousUserPage
+            // 
+            this.btnPreviousUserPage.Location = new System.Drawing.Point(773, 0);
+            this.btnPreviousUserPage.Name = "btnPreviousUserPage";
+            this.btnPreviousUserPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnPreviousUserPage.Size = new System.Drawing.Size(108, 35);
+            this.btnPreviousUserPage.TabIndex = 7;
+            this.btnPreviousUserPage.Text = "<";
+            this.btnPreviousUserPage.UseVisualStyleBackColor = true;
+            this.btnPreviousUserPage.Click += new System.EventHandler(this.BtnPreviousUserPage_Click);
+            // 
+            // btnLastUserPage
+            // 
+            this.btnLastUserPage.Location = new System.Drawing.Point(1098, 0);
+            this.btnLastUserPage.Name = "btnLastUserPage";
+            this.btnLastUserPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnLastUserPage.Size = new System.Drawing.Size(108, 35);
+            this.btnLastUserPage.TabIndex = 6;
+            this.btnLastUserPage.Text = ">>|";
+            this.btnLastUserPage.UseVisualStyleBackColor = true;
+            this.btnLastUserPage.Click += new System.EventHandler(this.BtnLastUserPage_Click);
+            // 
+            // btnNextUserPage
+            // 
+            this.btnNextUserPage.Location = new System.Drawing.Point(984, 0);
+            this.btnNextUserPage.Name = "btnNextUserPage";
+            this.btnNextUserPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnNextUserPage.Size = new System.Drawing.Size(108, 35);
+            this.btnNextUserPage.TabIndex = 5;
+            this.btnNextUserPage.Text = ">";
+            this.btnNextUserPage.UseVisualStyleBackColor = true;
+            this.btnNextUserPage.Click += new System.EventHandler(this.BtnNextUserPage_Click);
             // 
             // profileGroupTabPage
             // 
@@ -778,6 +873,9 @@
             this.userTabPage.ResumeLayout(false);
             this.userTableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCurrentUserPage)).EndInit();
             this.profileGroupTabPage.ResumeLayout(false);
             this.profileGroupTableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.profileGroupDataGridView)).EndInit();
@@ -850,5 +948,11 @@
         private System.Windows.Forms.Button btnFirstProfilePage;
         private System.Windows.Forms.Button btnPreviousProfilePage;
         private System.Windows.Forms.Button btnLastProfilePage;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.NumericUpDown txtCurrentUserPage;
+        private System.Windows.Forms.Button btnFirstUserPage;
+        private System.Windows.Forms.Button btnPreviousUserPage;
+        private System.Windows.Forms.Button btnLastUserPage;
+        private System.Windows.Forms.Button btnNextUserPage;
     }
 }
