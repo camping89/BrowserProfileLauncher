@@ -33,10 +33,12 @@ namespace BrowserProfileLauncher.Winform
             _accountService = serviceProvider.GetRequiredService<IAccountService>();
             _profileGroupService = serviceProvider.GetRequiredService<IProfileGroupService>();
             _serviceProvider = serviceProvider;
-            ProfilesPagination = new PaginationModel { PageSize = 2 };
-            UsersPagination = new PaginationModel { PageSize = 2 };
-            ProfileGroupsPagination = new PaginationModel { PageSize = 2 };
+            ProfilesPagination = new PaginationModel { PageSize = PageSize };
+            UsersPagination = new PaginationModel { PageSize = PageSize };
+            ProfileGroupsPagination = new PaginationModel { PageSize = PageSize };
         }
+
+        private static int PageSize => 10;
 
         #region general private class methods
 
