@@ -40,7 +40,15 @@ namespace BrowserProfileLauncher.Winform
                 var mainForm = new MainForm(_serviceProvider);
                 mainForm.Closed += (s, args) => Close();
                 Hide();
-                mainForm.Show();
+                try
+                {
+                    mainForm.Show();
+                }
+                catch (Exception)
+                {
+                    mainForm.Close();
+                }
+
             }
             else
             {

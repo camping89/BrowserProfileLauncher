@@ -34,7 +34,16 @@ namespace BrowserProfileLauncher.Winform
             using var scope = ConfigureServiceScope();
             var services = scope.ServiceProvider;
             var loginForm = services.GetRequiredService<LoginForm>();
-            WinformApplication.Run(loginForm);
+            try
+            {
+                WinformApplication.Run(loginForm);
+            }
+            catch (Exception)
+            {
+
+                WinformApplication.Exit();
+            }
+
         }
 
         private static IServiceScope ConfigureServiceScope()

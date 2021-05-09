@@ -7,7 +7,6 @@ using BrowserProfileLauncher.Services.ProfileGroups;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -63,17 +62,6 @@ namespace BrowserProfileLauncher.Winform
                     break;
                 default:
                     break;
-            }
-        }
-
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            var workers = Process.GetProcessesByName("chromedriver");
-            foreach (Process worker in workers)
-            {
-                worker.Kill();
-                worker.WaitForExit();
-                worker.Dispose();
             }
         }
 

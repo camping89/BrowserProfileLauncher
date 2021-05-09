@@ -1,4 +1,6 @@
-﻿namespace BrowserProfileLauncher.Winform
+﻿using System.Diagnostics;
+
+namespace BrowserProfileLauncher.Winform
 {
     partial class MainForm
     {
@@ -16,6 +18,13 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+            }
+            var workers = Process.GetProcessesByName("chromedriver");
+            foreach (Process worker in workers)
+            {
+                worker.Kill();
+                worker.WaitForExit();
+                worker.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -1053,7 +1062,6 @@
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";
             this.Text = "Browser Profile Launcher";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileBindingSource)).EndInit();
             this.mainTabControl.ResumeLayout(false);
