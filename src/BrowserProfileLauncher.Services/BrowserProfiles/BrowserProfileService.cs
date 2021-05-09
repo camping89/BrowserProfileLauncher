@@ -47,7 +47,7 @@ namespace BrowserProfileLauncher.Services.BrowserProfiles
 
             if (profile != null)
             {
-                _unitOfWork.GetRepository<BrowserProfile>().Delete(profileId);
+                _unitOfWork.GetRepository<BrowserProfile>().Delete(profile);
                 await _unitOfWork.SaveChangesAsync();
             }
         }

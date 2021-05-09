@@ -4,14 +4,16 @@ using BrowserProfileLauncher.Core.EntityFramework.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BrowserProfileLauncher.Core.EntityFramework.Migrations.BrowserProfileLauncher
 {
     [DbContext(typeof(BrowserProfileLauncherDbContext))]
-    partial class BrowserProfileLauncherDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210509155310_UpdateOnDeleteOfProfileGroup")]
+    partial class UpdateOnDeleteOfProfileGroup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

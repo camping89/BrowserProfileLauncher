@@ -15,6 +15,11 @@ namespace BrowserProfileLauncher.Core.EntityFramework.DbContexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<BrowserProfile>().ToTable("BrowserProfiles");
+            builder.Entity<BrowserProfile>()
+                   .HasOne(x => x.Group)
+                   .WithMany(x => x.BrowserProfiles)
+                   .HasForeignKey(x => x.GroupId)
+                   .OnDelete(DeleteBehavior.SetNull);
             builder.Entity<ProfileGroup>().ToTable("ProfileGroups");
         }
     }

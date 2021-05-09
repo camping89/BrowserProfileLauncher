@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BrowserProfileLauncher.Core.EntityFramework.Entities
 {
@@ -14,7 +13,6 @@ namespace BrowserProfileLauncher.Core.EntityFramework.Entities
         public string ProxyUsername { get; set; }
         public string ProxyPassword { get; set; }
 
-        [ForeignKey(nameof(GroupId))]
         public virtual ProfileGroup Group { get; set; }
     }
 }

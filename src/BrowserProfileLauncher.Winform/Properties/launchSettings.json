@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BrowserProfileLauncher.Winform": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

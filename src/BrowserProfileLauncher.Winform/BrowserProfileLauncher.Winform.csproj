@@ -5,43 +5,49 @@
 		<TargetFramework>net5.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ApplicationIcon>browser.ico</ApplicationIcon>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="chromedriver.bak.exe" />
-	  <None Remove="chromedriver.exe" />
+		<None Remove="chromedriver.bak.exe" />
+		<None Remove="chromedriver.exe" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="chromedriver.bak.exe">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="chromedriver.exe">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
+		<Content Include="chromedriver.bak.exe">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="chromedriver.exe">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BrowserProfileLauncher.Services\BrowserProfileLauncher.Services.csproj" />
+		<ProjectReference Include="..\BrowserProfileLauncher.Services\BrowserProfileLauncher.Services.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="CustomUserAgentForm.cs">
-	    <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Update="ProfileGroupDetailsForm.cs">
-	    <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Update="ChangeUserPasswordForm.cs">
-	    <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Update="CreateUserForm.cs">
-	    <SubType>Form</SubType>
-	  </Compile>
+		<Compile Update="CustomUserAgentForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="ProfileGroupDetailsForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="ChangeUserPasswordForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="CreateUserForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -51,15 +57,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="appsettings.dev.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="appsettings.live.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="appsettings.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<None Update="appsettings.Development.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.live.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>

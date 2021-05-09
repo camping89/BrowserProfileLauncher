@@ -49,9 +49,15 @@ namespace BrowserProfileLauncher.Winform
         private static IServiceScope ConfigureServiceScope()
         {
             var host = new HostBuilder()
+                        .ConfigureHostConfiguration(configHost =>
+                        {
+                            configHost.AddEnvironmentVariables(prefix: "ASPNETCORE_");
+                        })
                        .ConfigureAppConfiguration((context, builder) =>
                        {
+                           var env = context.HostingEnvironment;
                            builder.AddJsonFile("appsettings.json", optional: true);
+                           builder.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
                        })
                        .ConfigureServices((context, services) =>
                        {
