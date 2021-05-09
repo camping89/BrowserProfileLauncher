@@ -134,8 +134,8 @@ namespace BrowserProfileLauncher.Winform
 
         private void UpdateProfilePaginationVisibilities()
         {
-            txtCurrentProfilePage.Maximum = ProfilesPagination.TotalPages;
             txtCurrentProfilePage.Value = ProfilesPagination.PageIndex + 1;
+            txtCurrentProfilePage.Maximum = ProfilesPagination.TotalPages > 0 ? ProfilesPagination.TotalPages : 1;
             btnPreviousProfilePage.Enabled = ProfilesPagination.HasPreviousPage;
             btnFirstProfilePage.Enabled = ProfilesPagination.HasPreviousPage;
             btnNextProfilePage.Enabled = ProfilesPagination.HasNextPage;
