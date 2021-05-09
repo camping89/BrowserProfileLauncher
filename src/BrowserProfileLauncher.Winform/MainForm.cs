@@ -33,10 +33,12 @@ namespace BrowserProfileLauncher.Winform
             _accountService = serviceProvider.GetRequiredService<IAccountService>();
             _profileGroupService = serviceProvider.GetRequiredService<IProfileGroupService>();
             _serviceProvider = serviceProvider;
-            ProfilesPagination = new PaginationModel { PageSize = 2 };
-            UsersPagination = new PaginationModel { PageSize = 2 };
-            ProfileGroupsPagination = new PaginationModel { PageSize = 2 };
+            ProfilesPagination = new PaginationModel { PageSize = PageSize };
+            UsersPagination = new PaginationModel { PageSize = PageSize };
+            ProfileGroupsPagination = new PaginationModel { PageSize = PageSize };
         }
+
+        private static int PageSize => 10;
 
         #region general private class methods
 
@@ -134,8 +136,8 @@ namespace BrowserProfileLauncher.Winform
 
         private void UpdateProfilePaginationVisibilities()
         {
-            txtCurrentProfilePage.Maximum = ProfilesPagination.TotalPages;
             txtCurrentProfilePage.Value = ProfilesPagination.PageIndex + 1;
+            txtCurrentProfilePage.Maximum = ProfilesPagination.TotalPages > 0 ? ProfilesPagination.TotalPages : 1;
             btnPreviousProfilePage.Enabled = ProfilesPagination.HasPreviousPage;
             btnFirstProfilePage.Enabled = ProfilesPagination.HasPreviousPage;
             btnNextProfilePage.Enabled = ProfilesPagination.HasNextPage;

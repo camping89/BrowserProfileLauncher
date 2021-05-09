@@ -32,7 +32,7 @@ namespace BrowserProfileLauncher.Core.ProxyServers
 
         public void LaunchBrowser(ProxyAuth auth, string customAgent = null)
         {
-            var agent = customAgent ?? "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36";
+            var agent = string.IsNullOrEmpty(customAgent) ? "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36" : customAgent;
             var localPort = AddEndpoint(auth);
 
             var options = new ChromeOptions();
