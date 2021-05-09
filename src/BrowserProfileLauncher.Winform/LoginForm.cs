@@ -17,8 +17,9 @@ namespace BrowserProfileLauncher.Winform
             _serviceProvider = serviceProvider;
         }
 
-        private async void BtnLogin_Click(object sender, System.EventArgs e)
+        private async void BtnLogin_Click(object sender, EventArgs e)
         {
+            btnLogin.Enabled = false;
             await Login();
         }
 
@@ -33,7 +34,6 @@ namespace BrowserProfileLauncher.Winform
         private async Task Login()
         {
             var user = await _accountService.LoginAsync(txtUsername.Text, txtPassword.Text);
-            btnLogin.Enabled = false;
             if (user != null)
             {
                 Global.CurrentUser = user;
