@@ -11,6 +11,7 @@
 		<PreserveCompilationContext>true</PreserveCompilationContext>
 		<PreserveCompilationReferences>true</PreserveCompilationReferences>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<AssemblyName>NevaD</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
