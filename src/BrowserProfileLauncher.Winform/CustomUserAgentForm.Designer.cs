@@ -99,6 +99,7 @@ namespace BrowserProfileLauncher.Winform
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblUserAgent);
             this.Name = "CustomUserAgentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Custom User Agent";
             this.ResumeLayout(false);
             this.PerformLayout();

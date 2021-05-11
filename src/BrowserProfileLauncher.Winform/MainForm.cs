@@ -19,9 +19,9 @@ namespace BrowserProfileLauncher.Winform
         private readonly IAccountService _accountService;
         private readonly IProfileGroupService _profileGroupService;
         private readonly IServiceProvider _serviceProvider;
-        private PaginationModel ProfilesPagination;
-        private PaginationModel UsersPagination;
-        private PaginationModel ProfileGroupsPagination;
+        private readonly PaginationModel _profilesPagination;
+        private readonly PaginationModel _usersPagination;
+        private readonly PaginationModel _profileGroupsPagination;
         public MainForm(IServiceProvider serviceProvider)
         {
             InitializeComponent();
@@ -32,9 +32,9 @@ namespace BrowserProfileLauncher.Winform
             _accountService = serviceProvider.GetRequiredService<IAccountService>();
             _profileGroupService = serviceProvider.GetRequiredService<IProfileGroupService>();
             _serviceProvider = serviceProvider;
-            ProfilesPagination = new PaginationModel { PageSize = PageSize };
-            UsersPagination = new PaginationModel { PageSize = PageSize };
-            ProfileGroupsPagination = new PaginationModel { PageSize = PageSize };
+            _profilesPagination = new PaginationModel { PageSize = PageSize };
+            _usersPagination = new PaginationModel { PageSize = PageSize };
+            _profileGroupsPagination = new PaginationModel { PageSize = PageSize };
         }
 
         private static int PageSize => 10;
@@ -43,8 +43,8 @@ namespace BrowserProfileLauncher.Winform
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            SetupComponentVisibilities();
-            LoadBrowserProfiles();
+                SetupComponentVisibilities();
+                LoadBrowserProfiles();
         }
 
         private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,24 +113,24 @@ namespace BrowserProfileLauncher.Winform
         private void LoadBrowserProfiles()
         {
             var search = txtSearchProfileName.Text;
-            var pagedList = _browserProfileService.GetPagedList(Global.CurrentUser, pageSize: ProfilesPagination.PageSize, pageIndex: ProfilesPagination.PageIndex, search: search);
+            var pagedList = _browserProfileService.GetPagedList(Global.CurrentUser, pageSize: _profilesPagination.PageSize, pageIndex: _profilesPagination.PageIndex, search: search);
             browserProfileDataGridView.AutoGenerateColumns = false;
             browserProfileBindingSource.DataSource = pagedList.Items;
             browserProfileDataGridView.Columns[0].Visible = false;
 
-            UpdatePaginationDetails(ProfilesPagination, pagedList);
+            UpdatePaginationDetails(_profilesPagination, pagedList);
             UpdateProfilePaginationVisibilities();
         }
 
         private void UpdateProfilePaginationVisibilities()
         {
-            txtCurrentProfilePage.Value = ProfilesPagination.PageIndex + 1;
-            txtCurrentProfilePage.Maximum = ProfilesPagination.TotalPages > 0 ? ProfilesPagination.TotalPages : 1;
-            btnPreviousProfilePage.Enabled = ProfilesPagination.HasPreviousPage;
-            btnFirstProfilePage.Enabled = ProfilesPagination.HasPreviousPage;
-            btnNextProfilePage.Enabled = ProfilesPagination.HasNextPage;
-            btnLastProfilePage.Enabled = ProfilesPagination.HasNextPage;
-            lblProfileTotalPages.Text = ProfilesPagination.TotalPages.ToString();
+            txtCurrentProfilePage.Value = _profilesPagination.PageIndex + 1;
+            txtCurrentProfilePage.Maximum = _profilesPagination.TotalPages > 0 ? _profilesPagination.TotalPages : 1;
+            btnPreviousProfilePage.Enabled = _profilesPagination.HasPreviousPage;
+            btnFirstProfilePage.Enabled = _profilesPagination.HasPreviousPage;
+            btnNextProfilePage.Enabled = _profilesPagination.HasNextPage;
+            btnLastProfilePage.Enabled = _profilesPagination.HasNextPage;
+            lblProfileTotalPages.Text = _profilesPagination.TotalPages.ToString();
         }
 
         private async void BrowserProfileDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -266,31 +266,31 @@ namespace BrowserProfileLauncher.Winform
 
         private void BtnFirstProfilePage_Click(object sender, EventArgs e)
         {
-            ProfilesPagination.PageIndex = 0;
+            _profilesPagination.PageIndex = 0;
             LoadBrowserProfiles();
         }
 
         private void BtnPreviousProfilePage_Click(object sender, EventArgs e)
         {
-            ProfilesPagination.PageIndex--;
+            _profilesPagination.PageIndex--;
             LoadBrowserProfiles();
         }
 
         private void BtnNextProfilePage_Click(object sender, EventArgs e)
         {
-            ProfilesPagination.PageIndex++;
+            _profilesPagination.PageIndex++;
             LoadBrowserProfiles();
         }
 
         private void BtnLastProfilePage_Click(object sender, EventArgs e)
         {
-            ProfilesPagination.PageIndex = ProfilesPagination.TotalPages - 1;
+            _profilesPagination.PageIndex = _profilesPagination.TotalPages - 1;
             LoadBrowserProfiles();
         }
 
         private void TxtCurrentProfilePage_ValueChanged(object sender, EventArgs e)
         {
-            ProfilesPagination.PageIndex = (int)txtCurrentProfilePage.Value - 1;
+            _profilesPagination.PageIndex = (int)txtCurrentProfilePage.Value - 1;
             LoadBrowserProfiles();
         }
 
@@ -300,24 +300,24 @@ namespace BrowserProfileLauncher.Winform
 
         private void LoadProfileGroups()
         {
-            var pagedList = _profileGroupService.GetPagedList(pageIndex: ProfileGroupsPagination.PageIndex, pageSize: ProfileGroupsPagination.PageSize);
+            var pagedList = _profileGroupService.GetPagedList(pageIndex: _profileGroupsPagination.PageIndex, pageSize: _profileGroupsPagination.PageSize);
             profileGroupDataGridView.AutoGenerateColumns = false;
             profileGroupBindingSource.DataSource = pagedList.Items;
             profileGroupDataGridView.Columns[0].Visible = false;
 
-            UpdatePaginationDetails(ProfileGroupsPagination, pagedList);
+            UpdatePaginationDetails(_profileGroupsPagination, pagedList);
             UpdateProfileGroupPaginationVisibilities();
         }
 
         private void UpdateProfileGroupPaginationVisibilities()
         {
-            txtCurrentProfileGroupPage.Maximum = ProfileGroupsPagination.TotalPages;
-            txtCurrentProfileGroupPage.Value = ProfileGroupsPagination.PageIndex + 1;
-            btnPreviousProfileGroupPage.Enabled = ProfileGroupsPagination.HasPreviousPage;
-            btnFirstProfileGroupPage.Enabled = ProfileGroupsPagination.HasPreviousPage;
-            btnNextProfileGroupPage.Enabled = ProfileGroupsPagination.HasNextPage;
-            btnLastProfileGroupPage.Enabled = ProfileGroupsPagination.HasNextPage;
-            lblTotalProfileGroupPages.Text = ProfileGroupsPagination.TotalPages.ToString();
+            txtCurrentProfileGroupPage.Maximum = _profileGroupsPagination.TotalPages;
+            txtCurrentProfileGroupPage.Value = _profileGroupsPagination.PageIndex + 1;
+            btnPreviousProfileGroupPage.Enabled = _profileGroupsPagination.HasPreviousPage;
+            btnFirstProfileGroupPage.Enabled = _profileGroupsPagination.HasPreviousPage;
+            btnNextProfileGroupPage.Enabled = _profileGroupsPagination.HasNextPage;
+            btnLastProfileGroupPage.Enabled = _profileGroupsPagination.HasNextPage;
+            lblTotalProfileGroupPages.Text = _profileGroupsPagination.TotalPages.ToString();
         }
 
         private async Task DeleteBrowserProfileGroup(ProfileGroupModel profile)
@@ -401,31 +401,31 @@ namespace BrowserProfileLauncher.Winform
 
         private void BtnFirstProfileGroupPage_Click(object sender, EventArgs e)
         {
-            ProfileGroupsPagination.PageIndex = 0;
+            _profileGroupsPagination.PageIndex = 0;
             LoadProfileGroups();
         }
 
         private void BtnPreviousProfileGroupPage_Click(object sender, EventArgs e)
         {
-            ProfileGroupsPagination.PageIndex--;
+            _profileGroupsPagination.PageIndex--;
             LoadProfileGroups();
         }
 
         private void BtnNextProfileGroupPage_Click(object sender, EventArgs e)
         {
-            ProfileGroupsPagination.PageIndex++;
+            _profileGroupsPagination.PageIndex++;
             LoadProfileGroups();
         }
 
         private void BtnLastProfileGroupPage_Click(object sender, EventArgs e)
         {
-            ProfileGroupsPagination.PageIndex = ProfileGroupsPagination.TotalPages - 1;
+            _profileGroupsPagination.PageIndex = _profileGroupsPagination.TotalPages - 1;
             LoadProfileGroups();
         }
 
         private void TxtCurrentProfileGroupPage_ValueChanged(object sender, EventArgs e)
         {
-            ProfileGroupsPagination.PageIndex = (int)txtCurrentProfileGroupPage.Value - 1;
+            _profileGroupsPagination.PageIndex = (int)txtCurrentProfileGroupPage.Value - 1;
             LoadProfileGroups();
         }
 
@@ -435,24 +435,24 @@ namespace BrowserProfileLauncher.Winform
 
         private void LoadUsers()
         {
-            var pagedList = _accountService.GetPagedList(pageIndex: UsersPagination.PageIndex, pageSize: UsersPagination.PageSize);
+            var pagedList = _accountService.GetPagedList(pageIndex: _usersPagination.PageIndex, pageSize: _usersPagination.PageSize);
             userDataGridView.AutoGenerateColumns = false;
             userBindingSource.DataSource = pagedList.Items;
             userDataGridView.Columns[0].Visible = false;
 
-            UpdatePaginationDetails(UsersPagination, pagedList);
+            UpdatePaginationDetails(_usersPagination, pagedList);
             UpdateUserPaginationVisibilities();
         }
 
         private void UpdateUserPaginationVisibilities()
         {
-            txtCurrentUserPage.Maximum = UsersPagination.TotalPages;
-            txtCurrentUserPage.Value = UsersPagination.PageIndex + 1;
-            btnPreviousUserPage.Enabled = UsersPagination.HasPreviousPage;
-            btnFirstUserPage.Enabled = UsersPagination.HasPreviousPage;
-            btnNextUserPage.Enabled = UsersPagination.HasNextPage;
-            btnLastUserPage.Enabled = UsersPagination.HasNextPage;
-            lblTotalUserPages.Text = UsersPagination.TotalPages.ToString();
+            txtCurrentUserPage.Maximum = _usersPagination.TotalPages;
+            txtCurrentUserPage.Value = _usersPagination.PageIndex + 1;
+            btnPreviousUserPage.Enabled = _usersPagination.HasPreviousPage;
+            btnFirstUserPage.Enabled = _usersPagination.HasPreviousPage;
+            btnNextUserPage.Enabled = _usersPagination.HasNextPage;
+            btnLastUserPage.Enabled = _usersPagination.HasNextPage;
+            lblTotalUserPages.Text = _usersPagination.TotalPages.ToString();
         }
 
         private async Task DeleteUserAccount(UserModel user)
@@ -554,33 +554,39 @@ namespace BrowserProfileLauncher.Winform
 
         private void BtnFirstUserPage_Click(object sender, EventArgs e)
         {
-            UsersPagination.PageIndex = 0;
+            _usersPagination.PageIndex = 0;
             LoadUsers();
         }
 
         private void BtnPreviousUserPage_Click(object sender, EventArgs e)
         {
-            UsersPagination.PageIndex--;
+            _usersPagination.PageIndex--;
             LoadUsers();
         }
 
         private void BtnNextUserPage_Click(object sender, EventArgs e)
         {
-            UsersPagination.PageIndex++;
+            _usersPagination.PageIndex++;
             LoadUsers();
         }
 
         private void BtnLastUserPage_Click(object sender, EventArgs e)
         {
-            UsersPagination.PageIndex = UsersPagination.TotalPages - 1;
+            _usersPagination.PageIndex = _usersPagination.TotalPages - 1;
             LoadUsers();
         }
 
         private void TxtCurrentUserPage_ValueChanged(object sender, EventArgs e)
         {
-            UsersPagination.PageIndex = (int)txtCurrentUserPage.Value - 1;
+            _usersPagination.PageIndex = (int)txtCurrentUserPage.Value - 1;
             LoadUsers();
         }
         #endregion
+
+        private void BtnReload_Click(object sender, EventArgs e)
+        {
+            txtSearchProfileName.Text = string.Empty;
+            LoadBrowserProfiles();
+        }
     }
 }

@@ -58,6 +58,9 @@
 
 	<ItemGroup>
 		<None Update="appsettings.Development.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.dev.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="appsettings.live.json">

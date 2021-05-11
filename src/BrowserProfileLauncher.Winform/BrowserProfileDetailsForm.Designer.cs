@@ -230,6 +230,7 @@ namespace BrowserProfileLauncher.Winform
             this.ClientSize = new System.Drawing.Size(815, 528);
             this.Controls.Add(this.mainPanel);
             this.Name = "BrowserProfileDetailsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Browser Profile Details";
             this.Load += new System.EventHandler(this.BrowserProfileDetailsForm_Load);
             this.mainPanel.ResumeLayout(false);

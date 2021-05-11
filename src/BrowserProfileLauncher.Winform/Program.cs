@@ -34,17 +34,25 @@ namespace BrowserProfileLauncher.Winform
             using var scope = ConfigureServiceScope();
             var services = scope.ServiceProvider;
             var loginForm = services.GetRequiredService<LoginForm>();
+
+            //AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
+
             try
             {
                 WinformApplication.Run(loginForm);
             }
-            catch (Exception)
+            catch
             {
-
                 WinformApplication.Exit();
             }
-
         }
+
+        //static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs args)
+        //{
+        //    WinformApplication.Exit();
+        //    Exception e = (Exception)args.ExceptionObject;
+        //    Debug.WriteLine("Unhandled Exception:" + e.Message);
+        //}
 
         private static IServiceScope ConfigureServiceScope()
         {

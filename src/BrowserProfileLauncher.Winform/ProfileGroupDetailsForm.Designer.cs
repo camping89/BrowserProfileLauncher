@@ -94,6 +94,7 @@ namespace BrowserProfileLauncher.Winform
             this.ClientSize = new System.Drawing.Size(532, 149);
             this.Controls.Add(this.mainPanel);
             this.Name = "ProfileGroupDetailsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Group Details";
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();

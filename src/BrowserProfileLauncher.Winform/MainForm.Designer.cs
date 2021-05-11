@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace BrowserProfileLauncher.Winform
 {
@@ -27,6 +29,8 @@ namespace BrowserProfileLauncher.Winform
                 worker.Dispose();
             }
             base.Dispose(disposing);
+
+            //File.AppendAllText(@"D:\test.txt", $"testtest {DateTime.Now}");
         }
 
         #region Windows Form Designer generated code
@@ -60,6 +64,7 @@ namespace BrowserProfileLauncher.Winform
             this.PingProxy = new System.Windows.Forms.DataGridViewButtonColumn();
             this.LaunchBrowser = new System.Windows.Forms.DataGridViewButtonColumn();
             this.profleTableLayoutHeaderPanel = new System.Windows.Forms.Panel();
+            this.btnReload = new System.Windows.Forms.Button();
             this.btnSearchProfile = new System.Windows.Forms.Button();
             this.txtSearchProfileName = new System.Windows.Forms.TextBox();
             this.btnCreateProfile = new System.Windows.Forms.Button();
@@ -336,6 +341,7 @@ namespace BrowserProfileLauncher.Winform
             // 
             // profleTableLayoutHeaderPanel
             // 
+            this.profleTableLayoutHeaderPanel.Controls.Add(this.btnReload);
             this.profleTableLayoutHeaderPanel.Controls.Add(this.btnSearchProfile);
             this.profleTableLayoutHeaderPanel.Controls.Add(this.txtSearchProfileName);
             this.profleTableLayoutHeaderPanel.Controls.Add(this.btnCreateProfile);
@@ -347,12 +353,23 @@ namespace BrowserProfileLauncher.Winform
             this.profleTableLayoutHeaderPanel.Size = new System.Drawing.Size(1214, 40);
             this.profleTableLayoutHeaderPanel.TabIndex = 1;
             // 
+            // btnReload
+            // 
+            this.btnReload.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnReload.Location = new System.Drawing.Point(954, 2);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(125, 32);
+            this.btnReload.TabIndex = 3;
+            this.btnReload.Text = "Reload";
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.BtnReload_Click);
+            // 
             // btnSearchProfile
             // 
             this.btnSearchProfile.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSearchProfile.Location = new System.Drawing.Point(278, 1);
+            this.btnSearchProfile.Location = new System.Drawing.Point(278, 2);
             this.btnSearchProfile.Name = "btnSearchProfile";
-            this.btnSearchProfile.Size = new System.Drawing.Size(105, 40);
+            this.btnSearchProfile.Size = new System.Drawing.Size(105, 32);
             this.btnSearchProfile.TabIndex = 2;
             this.btnSearchProfile.Text = "Search";
             this.btnSearchProfile.UseVisualStyleBackColor = true;
@@ -366,15 +383,15 @@ namespace BrowserProfileLauncher.Winform
             this.txtSearchProfileName.Name = "txtSearchProfileName";
             this.txtSearchProfileName.PlaceholderText = "search";
             this.txtSearchProfileName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtSearchProfileName.Size = new System.Drawing.Size(274, 38);
+            this.txtSearchProfileName.Size = new System.Drawing.Size(274, 32);
             this.txtSearchProfileName.TabIndex = 1;
             // 
             // btnCreateProfile
             // 
             this.btnCreateProfile.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCreateProfile.Location = new System.Drawing.Point(1085, 1);
+            this.btnCreateProfile.Location = new System.Drawing.Point(1085, 2);
             this.btnCreateProfile.Name = "btnCreateProfile";
-            this.btnCreateProfile.Size = new System.Drawing.Size(125, 40);
+            this.btnCreateProfile.Size = new System.Drawing.Size(125, 32);
             this.btnCreateProfile.TabIndex = 0;
             this.btnCreateProfile.Text = "Create New";
             this.btnCreateProfile.UseVisualStyleBackColor = true;
@@ -1061,6 +1078,7 @@ namespace BrowserProfileLauncher.Winform
             this.Controls.Add(this.mainFormTableLayoutPanel);
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Browser Profile Launcher";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileBindingSource)).EndInit();
@@ -1175,5 +1193,6 @@ namespace BrowserProfileLauncher.Winform
         private System.Windows.Forms.Label lblTotalUserPages;
         private System.Windows.Forms.Label lblProfileTotalPages;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnReload;
     }
 }

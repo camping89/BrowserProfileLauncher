@@ -135,6 +135,7 @@ namespace BrowserProfileLauncher.Winform
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "CreateUserForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create New User";
             this.Load += new System.EventHandler(this.UserDetailsForm_Load);
             this.ResumeLayout(false);

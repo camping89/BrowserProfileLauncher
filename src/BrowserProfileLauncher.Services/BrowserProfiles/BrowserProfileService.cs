@@ -102,7 +102,7 @@ namespace BrowserProfileLauncher.Services.BrowserProfiles
 
                 return myip == proxyIp;
             }
-            catch (Exception)
+            catch
             {
                 return false;
             }

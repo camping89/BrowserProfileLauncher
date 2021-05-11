@@ -168,6 +168,7 @@ namespace BrowserProfileLauncher.Winform
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.Padding = new System.Windows.Forms.Padding(200, 100, 200, 100);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
