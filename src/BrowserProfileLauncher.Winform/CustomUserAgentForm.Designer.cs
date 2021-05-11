@@ -29,28 +29,19 @@ namespace BrowserProfileLauncher.Winform
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblUserAgent = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomUserAgentForm));
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtUserAgent = new System.Windows.Forms.TextBox();
             this.btnUseDefaultAgent = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbUserAgent = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // lblUserAgent
-            // 
-            this.lblUserAgent.AutoSize = true;
-            this.lblUserAgent.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblUserAgent.Location = new System.Drawing.Point(12, 25);
-            this.lblUserAgent.Name = "lblUserAgent";
-            this.lblUserAgent.Size = new System.Drawing.Size(145, 21);
-            this.lblUserAgent.TabIndex = 2;
-            this.lblUserAgent.Text = "Custom User Agent";
             // 
             // btnSave
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(562, 75);
+            this.btnSave.Location = new System.Drawing.Point(595, 41);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(106, 39);
             this.btnSave.TabIndex = 3;
@@ -61,26 +52,18 @@ namespace BrowserProfileLauncher.Winform
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCancel.Location = new System.Drawing.Point(815, 75);
+            this.btnCancel.Location = new System.Drawing.Point(848, 41);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(106, 39);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // txtUserAgent
-            // 
-            this.txtUserAgent.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtUserAgent.Location = new System.Drawing.Point(174, 22);
-            this.txtUserAgent.Name = "txtUserAgent";
-            this.txtUserAgent.Size = new System.Drawing.Size(778, 29);
-            this.txtUserAgent.TabIndex = 6;
-            // 
             // btnUseDefaultAgent
             // 
             this.btnUseDefaultAgent.DialogResult = System.Windows.Forms.DialogResult.Ignore;
             this.btnUseDefaultAgent.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnUseDefaultAgent.Location = new System.Drawing.Point(688, 75);
+            this.btnUseDefaultAgent.Location = new System.Drawing.Point(721, 41);
             this.btnUseDefaultAgent.Name = "btnUseDefaultAgent";
             this.btnUseDefaultAgent.Padding = new System.Windows.Forms.Padding(3);
             this.btnUseDefaultAgent.Size = new System.Drawing.Size(106, 39);
@@ -88,29 +71,49 @@ namespace BrowserProfileLauncher.Winform
             this.btnUseDefaultAgent.Text = "Use Default";
             this.btnUseDefaultAgent.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(14, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 21);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Choose User Agent";
+            // 
+            // cbUserAgent
+            // 
+            this.cbUserAgent.FormattingEnabled = true;
+            this.cbUserAgent.Location = new System.Drawing.Point(176, 12);
+            this.cbUserAgent.Name = "cbUserAgent";
+            this.cbUserAgent.Size = new System.Drawing.Size(778, 23);
+            this.cbUserAgent.TabIndex = 9;
+            // 
             // CustomUserAgentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 136);
+            this.ClientSize = new System.Drawing.Size(964, 88);
+            this.Controls.Add(this.cbUserAgent);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnUseDefaultAgent);
-            this.Controls.Add(this.txtUserAgent);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.lblUserAgent);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomUserAgentForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Custom User Agent";
+            this.Text = "NevaD - Custom User Agent";
+            this.Load += new System.EventHandler(this.CustomUserAgentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label lblUserAgent;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        public System.Windows.Forms.TextBox txtUserAgent;
         private System.Windows.Forms.Button btnUseDefaultAgent;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.ComboBox cbUserAgent;
     }
 }

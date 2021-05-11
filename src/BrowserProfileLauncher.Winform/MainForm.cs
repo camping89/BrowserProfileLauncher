@@ -170,7 +170,7 @@ namespace BrowserProfileLauncher.Winform
             var dialogResult = customAgentForm.ShowDialog(this);
             if (dialogResult != DialogResult.Cancel)
             {
-                string customAgent = dialogResult == DialogResult.OK ? customAgentForm.txtUserAgent.Text : null;
+                string customAgent = dialogResult == DialogResult.OK ? customAgentForm.cbUserAgent.Text : null;
                 _browserProfileService.Launch(profile, customAgent);
             }
         }

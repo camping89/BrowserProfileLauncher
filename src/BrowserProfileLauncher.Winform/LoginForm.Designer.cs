@@ -83,7 +83,7 @@ namespace BrowserProfileLauncher.Winform
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(159, 0);
+            this.label2.Location = new System.Drawing.Point(67, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 21);
             this.label2.TabIndex = 1;
@@ -96,9 +96,9 @@ namespace BrowserProfileLauncher.Winform
             this.label1.ForeColor = System.Drawing.Color.Gold;
             this.label1.Location = new System.Drawing.Point(9, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 21);
+            this.label1.Size = new System.Drawing.Size(62, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "BROWSER PROFILE";
+            this.label1.Text = "NevaD";
             // 
             // panel1
             // 
@@ -153,9 +153,9 @@ namespace BrowserProfileLauncher.Winform
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(11, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 21);
+            this.label3.Size = new System.Drawing.Size(59, 21);
             this.label3.TabIndex = 2;
-            this.label3.Text = "LOGIN FORM";
+            this.label3.Text = "LOGIN";
             // 
             // LoginForm
             // 
@@ -169,7 +169,7 @@ namespace BrowserProfileLauncher.Winform
             this.Name = "LoginForm";
             this.Padding = new System.Windows.Forms.Padding(200, 100, 200, 100);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "NevaD - Login";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

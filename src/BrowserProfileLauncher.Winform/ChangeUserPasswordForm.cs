@@ -24,10 +24,5 @@ namespace BrowserProfileLauncher.Winform
                 this.txtUsername.Text = user.Username;
             }
         }
-
-        private async void UserDetailsForm_Load(object sender, EventArgs e)
-        {
-            await LoadUserDetails();
-        }
     }
 }

@@ -46,6 +46,7 @@ namespace BrowserProfileLauncher.Winform
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.browserProfileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.profileTabPage = new System.Windows.Forms.TabPage();
@@ -1076,10 +1077,11 @@ namespace BrowserProfileLauncher.Winform
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1234, 634);
             this.Controls.Add(this.mainFormTableLayoutPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Browser Profile Launcher";
+            this.Text = "NevaD";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.browserProfileBindingSource)).EndInit();
             this.mainTabControl.ResumeLayout(false);

@@ -29,6 +29,7 @@ namespace BrowserProfileLauncher.Winform
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateUserForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
@@ -134,9 +135,10 @@ namespace BrowserProfileLauncher.Winform
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create New User";
+            this.Text = "NevaD - Create New User";
             this.Load += new System.EventHandler(this.UserDetailsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

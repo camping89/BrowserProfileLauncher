@@ -29,6 +29,7 @@ namespace BrowserProfileLauncher.Winform
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserProfileDetailsForm));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.cbProfileGroup = new System.Windows.Forms.ComboBox();
             this.Group = new System.Windows.Forms.Label();
@@ -229,9 +230,10 @@ namespace BrowserProfileLauncher.Winform
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 528);
             this.Controls.Add(this.mainPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BrowserProfileDetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Browser Profile Details";
+            this.Text = "NevaD - Browser Profile Details";
             this.Load += new System.EventHandler(this.BrowserProfileDetailsForm_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();

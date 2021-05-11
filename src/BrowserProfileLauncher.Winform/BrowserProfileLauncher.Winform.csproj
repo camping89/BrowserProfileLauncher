@@ -4,7 +4,7 @@
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net5.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
-		<ApplicationIcon>browser.ico</ApplicationIcon>
+		<ApplicationIcon>NevaD.ico</ApplicationIcon>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
 		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
@@ -16,6 +16,14 @@
 	<ItemGroup>
 		<None Remove="chromedriver.bak.exe" />
 		<None Remove="chromedriver.exe" />
+		<None Remove="NevaD.ico" />
+		<None Remove="UserAgents.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="UserAgents.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -33,6 +41,12 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\BrowserProfileLauncher.Services\BrowserProfileLauncher.Services.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="NevaD.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>

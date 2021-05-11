@@ -29,6 +29,7 @@ namespace BrowserProfileLauncher.Winform
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileGroupDetailsForm));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -93,9 +94,10 @@ namespace BrowserProfileLauncher.Winform
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 149);
             this.Controls.Add(this.mainPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProfileGroupDetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Group Details";
+            this.Text = "NevaD - Group Details";
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
